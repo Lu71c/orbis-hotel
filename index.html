@@ -1,0 +1,842 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    <title>Villa Bellaria | Country Relais &amp; Historical Retreat - Val d'Orcia</title>
+    <meta name="description" content="Dimora d'epoca cinquecentesca nel cuore della Val d'Orcia. Tre suite esclusive, piscina a sfioro tra gli ulivi e alta enogastronomia toscana. Prenotazione diretta con miglior tariffa web garantita.">
+
+    <!-- Preload Prioritario Immagine Hero ad Altissima Risoluzione -->
+    <link rel="preload" as="image" href="img/hero-relais.webp" fetchpriority="high">
+
+    <!-- Tipografia Google Fonts (Cormorant Garamond per titoli di pregio + Plus Jakarta Sans per UI e leggibilità) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Foglio di Stile Esterno -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <!-- ======================================================================
+         1. ANNOUNCEMENT BAR (Disintermediazione & Garanzie)
+         ====================================================================== -->
+    <aside class="announcement-bar" aria-label="Comunicazioni sulle prenotazioni dirette">
+        <div class="announcement-content">
+            <span class="badge-gold">Privilegio Web</span>
+            <p>Miglior Tariffa Garantita (-15% rispetto a Booking) &bull; Calice di Chianti di Benvenuto &bull; Cancellazione Flessibile</p>
+        </div>
+    </aside>
+
+    <!-- ======================================================================
+         2. HEADER TRASLUCIDO & NAVIGAZIONE
+         ====================================================================== -->
+    <header id="mainHeader" class="header-main">
+        <div class="header-container">
+            <!-- Tasto Mobile Menu -->
+            <button class="hamburger-btn" id="openMobileMenuBtn" aria-label="Apri menu di navigazione">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </button>
+
+            <!-- Brand Identity -->
+            <a href="#" class="brand-identity">
+                <span class="brand-monogram">VB</span>
+                <div class="brand-text">
+                    <span class="brand-name">VILLA BELLARIA</span>
+                    <span class="brand-sub">Country Relais &bull; Val d'Orcia</span>
+                </div>
+            </a>
+
+            <!-- Navigazione Desktop -->
+            <nav class="desktop-nav" aria-label="Navigazione principale">
+                <a href="#dimora" class="nav-link">La Dimora</a>
+                <a href="#suite" class="nav-link">Le Suite</a>
+                <a href="#esperienze" class="nav-link">Esperienze</a>
+                <a href="#colazione" class="nav-link">Colazione &amp; Orto</a>
+                <a href="#territorio" class="nav-link">Dintorni</a>
+                <a href="#faq" class="nav-link">F.A.Q.</a>
+            </nav>
+
+            <!-- CTA Prenotazione Rapida -->
+            <div class="header-actions">
+                <a href="#bookingBarSection" class="btn-primary-gold btn-header">
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+                    <span>Verifica Date</span>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Drawer Navigazione Mobile -->
+    <div class="mobile-drawer" id="mobileNavDrawer" aria-hidden="true">
+        <div class="drawer-header">
+            <div class="drawer-brand">
+                <span class="brand-name">VILLA BELLARIA</span>
+                <span class="brand-sub">Val d'Orcia &bull; Toscana</span>
+            </div>
+            <button class="close-drawer-btn" id="closeMobileMenuBtn" aria-label="Chiudi menu">&times;</button>
+        </div>
+        <nav class="drawer-nav">
+            <a href="#dimora" class="drawer-link">La Dimora Storica</a>
+            <a href="#suite" class="drawer-link">Le Tre Suite Private</a>
+            <a href="#esperienze" class="drawer-link">Esperienze &amp; Degustazioni</a>
+            <a href="#colazione" class="drawer-link">La Colazione a KM Zero</a>
+            <a href="#territorio" class="drawer-link">Posizione &amp; Borghi</a>
+            <a href="#faq" class="drawer-link">Domande Frequenti</a>
+        </nav>
+        <div class="drawer-footer">
+            <p class="drawer-contact-label">Assistenza Diretta Concierge:</p>
+            <a href="tel:+390578123456" class="drawer-phone">+39 0578 123456</a>
+            <span class="drawer-coords">Coordinate GPS: 43.0562&deg; N, 11.6784&deg; E</span>
+        </div>
+    </div>
+
+    <!-- ======================================================================
+         3. HERO PRINCIPALE & FLOATING BOOKING BAR
+         ====================================================================== -->
+    <section class="hero-section" style="background-image: url('img/hero-relais.webp');">
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <span class="hero-eyebrow">Benvenuti nel silenzio della Val d'Orcia</span>
+            <h1 class="hero-title">Il lusso autentico del tempo ritrovato.</h1>
+            <p class="hero-desc">Un casale cinquecentesco restaurato nella pietra e nel legno antico. Tre sole suite, piscina a sfioro tra gli ulivi e la pace incontaminata delle colline toscane.</p>
+            
+            <div class="hero-meta-badges">
+                <span class="meta-item">&bull; Solo 3 alloggi riservati</span>
+                <span class="meta-item">&bull; Tenuta biologica di 12 ettari</span>
+                <span class="meta-item">&bull; Panorama Unesco</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Booking Bar Fluttuante -->
+    <div class="booking-bar-anchor" id="bookingBarSection">
+        <div class="booking-bar-container">
+            <form id="bookingBarForm" class="booking-bar" novalidate>
+                <!-- Check-in -->
+                <div class="booking-field">
+                    <label for="checkInInput">
+                        <span class="field-icon">📅</span>
+                        <span class="field-label">Arrivo (Check-in)</span>
+                    </label>
+                    <input type="date" id="checkInInput" required aria-label="Data di arrivo">
+                </div>
+
+                <!-- Check-out -->
+                <div class="booking-field">
+                    <label for="checkOutInput">
+                        <span class="field-icon">🛫</span>
+                        <span class="field-label">Partenza (Check-out)</span>
+                    </label>
+                    <input type="date" id="checkOutInput" required aria-label="Data di partenza">
+                </div>
+
+                <!-- Ospiti -->
+                <div class="booking-field">
+                    <label for="guestsSelect">
+                        <span class="field-icon">👥</span>
+                        <span class="field-label">Ospiti Totali</span>
+                    </label>
+                    <select id="guestsSelect" aria-label="Numero di ospiti">
+                        <option value="1">1 Ospite (Uso Singola)</option>
+                        <option value="2" selected>2 Ospiti (Coppia)</option>
+                        <option value="3">3 Ospiti</option>
+                        <option value="4">4 Ospiti (Famiglia/Suite Torre)</option>
+                    </select>
+                </div>
+
+                <!-- Suite Selezionata -->
+                <div class="booking-field">
+                    <label for="suiteSelect">
+                        <span class="field-icon">🗝️</span>
+                        <span class="field-label">Suite Desiderata</span>
+                    </label>
+                    <select id="suiteSelect" aria-label="Selezione della suite">
+                        <option value="any">Confronta Tutte le Suite</option>
+                        <option value="suite-giardino">Junior Suite Il Giardino (da € 160)</option>
+                        <option value="suite-deluxe">Deluxe Suite La Terrazza (da € 220)</option>
+                        <option value="suite-torre">Master Suite La Torre (da € 310)</option>
+                    </select>
+                </div>
+
+                <!-- Tasto Calcola Preventivo -->
+                <div class="booking-field-action">
+                    <button type="submit" id="calcBookingBtn" class="btn-calc-booking">
+                        <span>Calcola Preventivo</span>
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                    </button>
+                </div>
+            </form>
+            <div id="bookingMinNightsNotice" class="booking-notice hidden">
+                <span>⚠️ Per i fine settimana è richiesto un soggiorno minimo di 2 notti.</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- ======================================================================
+         4. THE DIRECT TRUST STRIP (I Vantaggi Diretti)
+         ====================================================================== -->
+    <section class="trust-strip-section" aria-label="Vantaggi per prenotazioni dirette">
+        <div class="trust-strip-container">
+            <div class="trust-card">
+                <div class="trust-icon-box">🏷️</div>
+                <div class="trust-body">
+                    <h4>Miglior Tariffa Web Garantita</h4>
+                    <p>Risparmio effettivo del 15% rispetto a Booking.com ed Expedia senza intermediari.</p>
+                </div>
+            </div>
+            <div class="trust-card">
+                <div class="trust-icon-box">🥐</div>
+                <div class="trust-body">
+                    <h4>Colazione Artigianale Inclusa</h4>
+                    <p>Torte da forno a lievitazione naturale, formaggi dop e miele della nostra tenuta biologica.</p>
+                </div>
+            </div>
+            <div class="trust-card">
+                <div class="trust-icon-box">🍷</div>
+                <div class="trust-body">
+                    <h4>Benvenuto con Chianti DOCG</h4>
+                    <p>All'arrivo troverete in camera una bottiglia della riserva di famiglia e cantucci caldi.</p>
+                </div>
+            </div>
+            <div class="trust-card">
+                <div class="trust-icon-box">🛡️</div>
+                <div class="trust-body">
+                    <h4>Cancellazione Flessibile</h4>
+                    <p>Modifica o annulla gratuitamente il soggiorno fino a 7 giorni prima del check-in.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ======================================================================
+         5. SEZIONE "LA DIMORA" (Storytelling & Identità)
+         ====================================================================== -->
+    <section class="section-storytelling" id="dimora">
+        <div class="storytelling-container">
+            <div class="storytelling-content">
+                <span class="section-kicker">La Nostra Filosofia</span>
+                <h2 class="section-heading">Una storia d'amore per la pietra toscana.</h2>
+                <div class="storytelling-prose">
+                    <p>Villa Bellaria sorge su un promontorio naturale affacciato sulla Val d'Orcia, originariamente eretta nel 1584 come stazione di sosta lungo le antiche vie commerciali tra Pienza e Siena.</p>
+                    <p>Oggi, dopo cinque anni di minuzioso restauro condotto nel pieno rispetto delle Belle Arti, abbiamo trasformato l'antico podere in un ritiro intimo con sole tre suite padronali. Manteniamo pavimenti in cotto fatto a mano, solai in travi di castagno centenario e pareti in pietra serena che respirano con le stagioni.</p>
+                    <blockquote class="storytelling-quote">
+                        "Non abbiamo aggiunto stanze per aumentare i numeri; abbiamo tolto pareti per regalare respiro, luce e silenzio a chi sceglie di fermarsi."
+                        <cite>&mdash; Caterina &amp; Lorenzo, Custodi della Tenuta</cite>
+                    </blockquote>
+                </div>
+                <div class="storytelling-badges">
+                    <div class="badge-item">
+                        <strong>1584</strong>
+                        <small>Fondazione Storica</small>
+                    </div>
+                    <div class="badge-item">
+                        <strong>12 Ettari</strong>
+                        <small>Uliveti e Vigneti</small>
+                    </div>
+                    <div class="badge-item">
+                        <strong>100% Green</strong>
+                        <small>Energia Geotermica &amp; Solare</small>
+                    </div>
+                </div>
+            </div>
+            <div class="storytelling-media">
+                <div class="media-frame">
+                    <img src="img/scorcio-tenuta.webp" alt="Scorcio architettonico della tenuta Villa Bellaria tra muretti a secco e cipressi" loading="lazy" decoding="async">
+                    <div class="media-caption">
+                        <span>Il Chiostro degli Ulivi al tramonto</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ======================================================================
+         6. SEZIONE "LE SUITE" (3 Camere con Comparatore di Prezzo)
+         ====================================================================== -->
+    <section class="section-suites" id="suite">
+        <div class="suites-header-wrapper">
+            <span class="section-kicker">Ospitalità Riservata</span>
+            <h2 class="section-heading">La Collezione delle Tre Suite</h2>
+            <p class="suites-subtitle">Ogni camera possiede un'anima indipendente, arredi su misura di maestri artigiani locali e ingresso privato.</p>
+        </div>
+
+        <div class="suites-list">
+            
+            <!-- SUITE 1: JUNIOR SUITE IL GIARDINO -->
+            <article class="suite-card" data-id="suite-giardino" data-name="Junior Suite Il Giardino" data-price-direct="160" data-price-ota="190" data-guests="2" data-sqm="35">
+                <div class="suite-media">
+                    <img src="img/suite-giardino.webp" alt="Junior Suite Il Giardino - Camera da letto in lino naturale con vista uliveto" loading="lazy" decoding="async">
+                    <span class="suite-tag-pill">Piano Terra &bull; Accesso Giardino</span>
+                </div>
+                <div class="suite-details">
+                    <div class="suite-meta-header">
+                        <span class="suite-size">35 mq &bull; Fino a 2 Ospiti</span>
+                        <div class="suite-price-comparison">
+                            <span class="ota-price">OTA: € 190</span>
+                            <span class="direct-price">da <strong>€ 160</strong> / notte</span>
+                            <span class="direct-savings-badge">Risparmi € 30</span>
+                        </div>
+                    </div>
+                    <h3 class="suite-title">Junior Suite &ldquo;Il Giardino&rdquo;</h3>
+                    <p class="suite-desc">Affacciata direttamente sul pergolato di rose bianche e sull'antico uliveto. Pavimenti in cotto antico cerato a mano, lenzuola in lino grezzo e doccia a pioggia scavata nel travertino toscano.</p>
+                    
+                    <ul class="suite-amenities-list">
+                        <li><span>🌿</span> Patio privato con sdraio</li>
+                        <li><span>☕</span> Macchina Nespresso e tisaneria</li>
+                        <li><span>🚿</span> Doccia a vista in pietra locale</li>
+                        <li><span>📶</span> Connessione Wi-Fi 100 Mbps</li>
+                        <li><span>❄️</span> Climatizzazione ecologica autonoma</li>
+                    </ul>
+
+                    <div class="suite-actions">
+                        <button type="button" class="btn-open-drawer" data-suite="suite-giardino">Scheda Completa &amp; Servizi</button>
+                        <button type="button" class="btn-select-suite btn-primary-gold" data-suite="suite-giardino">Prenota a € 160</button>
+                    </div>
+                </div>
+            </article>
+
+            <!-- SUITE 2: DELUXE SUITE LA TERRAZZA -->
+            <article class="suite-card suite-card-reversed" data-id="suite-deluxe" data-name="Deluxe Suite La Terrazza" data-price-direct="220" data-price-ota="265" data-guests="2" data-sqm="45">
+                <div class="suite-media">
+                    <img src="img/suite-deluxe.webp" alt="Deluxe Suite La Terrazza - Letto King Size, vasca freestanding e travi in castagno" loading="lazy" decoding="async">
+                    <span class="suite-tag-pill accent">La Più Amata dalle Coppie</span>
+                </div>
+                <div class="suite-details">
+                    <div class="suite-meta-header">
+                        <span class="suite-size">45 mq &bull; Fino a 2 Ospiti</span>
+                        <div class="suite-price-comparison">
+                            <span class="ota-price">OTA: € 265</span>
+                            <span class="direct-price">da <strong>€ 220</strong> / notte</span>
+                            <span class="direct-savings-badge">Risparmi € 45</span>
+                        </div>
+                    </div>
+                    <h3 class="suite-title">Deluxe Suite &ldquo;La Terrazza&rdquo;</h3>
+                    <p class="suite-desc">Situata al primo piano del casale padronale con terrazzo panoramico solarium ad uso esclusivo. Dotata di un maestoso letto King Size a baldacchino e vasca da bagno freestanding in camera vista colline.</p>
+                    
+                    <ul class="suite-amenities-list">
+                        <li><span>🌄</span> Terrazza panoramica di 18 mq</li>
+                        <li><span>🛁</span> Vasca freestanding panoramica</li>
+                        <li><span>🍷</span> Cantinetta vini privati in camera</li>
+                        <li><span>🧴</span> Set cortesia biologico all'olio EVO</li>
+                        <li><span>💤</span> Materasso Simmons 7 zone di comfort</li>
+                    </ul>
+
+                    <div class="suite-actions">
+                        <button type="button" class="btn-open-drawer" data-suite="suite-deluxe">Scheda Completa &amp; Servizi</button>
+                        <button type="button" class="btn-select-suite btn-primary-gold" data-suite="suite-deluxe">Prenota a € 220</button>
+                    </div>
+                </div>
+            </article>
+
+            <!-- SUITE 3: MASTER SUITE LA TORRE -->
+            <article class="suite-card" data-id="suite-torre" data-name="Master Suite La Torre" data-price-direct="310" data-price-ota="375" data-guests="4" data-sqm="60">
+                <div class="suite-media">
+                    <img src="img/suite-torre.webp" alt="Master Suite La Torre - Due livelli, camino in pietra storico e vasca idromassaggio privata" loading="lazy" decoding="async">
+                    <span class="suite-tag-pill">Suite Storica &bull; Due Livelli</span>
+                </div>
+                <div class="suite-details">
+                    <div class="suite-meta-header">
+                        <span class="suite-size">60 mq &bull; Fino a 4 Ospiti</span>
+                        <div class="suite-price-comparison">
+                            <span class="ota-price">OTA: € 375</span>
+                            <span class="direct-price">da <strong>€ 310</strong> / notte</span>
+                            <span class="direct-savings-badge">Risparmi € 65</span>
+                        </div>
+                    </div>
+                    <h3 class="suite-title">Master Suite &ldquo;La Torre&rdquo;</h3>
+                    <p class="suite-desc">Il fiore all'occhiello di Villa Bellaria. Si sviluppa sui due piani dell'antica torre di guardia del 1500. Al piano inferiore salotto privato con camino in pietra funzionante; al piano superiore stanza padronale e mini-piscina idromassaggio privata.</p>
+                    
+                    <ul class="suite-amenities-list">
+                        <li><span>🔥</span> Camino storico a legna</li>
+                        <li><span>🫧</span> Vasca idromassaggio Jacuzzi privata</li>
+                        <li><span>🏰</span> Vista a 360 gradi su tutta la valle</li>
+                        <li><span>🎶</span> Impianto acustico Marshall Bluetooth</li>
+                        <li><span>🛋️</span> Secondo ambiente con divano letto</li>
+                    </ul>
+
+                    <div class="suite-actions">
+                        <button type="button" class="btn-open-drawer" data-suite="suite-torre">Scheda Completa &amp; Servizi</button>
+                        <button type="button" class="btn-select-suite btn-primary-gold" data-suite="suite-torre">Prenota a € 310</button>
+                    </div>
+                </div>
+            </article>
+
+        </div>
+    </section>
+
+    <!-- ======================================================================
+         7. SEZIONE "ESPERIENZE" (Cross-Selling ad Alto Margine)
+         ====================================================================== -->
+    <section class="section-experiences" id="esperienze">
+        <div class="experiences-container">
+            <div class="experiences-header">
+                <span class="section-kicker">Oltre il Soggiorno</span>
+                <h2 class="section-heading">Esperienze Esclusive della Tenuta</h2>
+                <p>Arricchisci la tua fuga toscana selezionando le nostre attività private direttamente nel preventivo.</p>
+            </div>
+
+            <div class="experiences-grid">
+                
+                <!-- Esperienza 1 -->
+                <div class="experience-card">
+                    <div class="experience-img-box">
+                        <img src="img/degustazione-vini.webp" alt="Degustazione di vini toscani e tagliere tipico nel vigneto al tramonto" loading="lazy" decoding="async">
+                        <span class="experience-price-badge">€ 45 / persona</span>
+                    </div>
+                    <div class="experience-info">
+                        <h3>Degustazione Vini &amp; Frantoio</h3>
+                        <p>Visita guidata alla nostra cantina biologica ipogea con sommelier privato. Assaggio di 4 etichette d'annata abbinate a pecorini di Pienza stagionati in grotta e bruschette con il nostro olio extravergine.</p>
+                        <span class="experience-duration">⏱️ Durata: 2 ore circa &bull; Tutti i pomeriggi alle 17:30</span>
+                    </div>
+                </div>
+
+                <!-- Esperienza 2 -->
+                <div class="experience-card">
+                    <div class="experience-img-box placeholder-activity">
+                        <div class="experience-icon-huge">🚴</div>
+                        <span class="experience-price-badge">€ 40 / giorno</span>
+                    </div>
+                    <div class="experience-info">
+                        <h3>Slow E-Bike Tour nei Borghi</h3>
+                        <p>Due biciclette a pedalata assistita di ultima generazione riservate per l'intera giornata. Mappe GPX preinstallate su supporto GPS con gli itinerari meno battuti per Monticchiello e Bagno Vignoni.</p>
+                        <span class="experience-duration">🗺️ Include: Casco, kit riparazione e mappa cantine</span>
+                    </div>
+                </div>
+
+                <!-- Esperienza 3 -->
+                <div class="experience-card">
+                    <div class="experience-img-box placeholder-activity">
+                        <div class="experience-icon-huge">🌿</div>
+                        <span class="experience-price-badge">€ 75 / persona</span>
+                    </div>
+                    <div class="experience-info">
+                        <h3>Massaggio Olistico all'Aperto</h3>
+                        <p>Rituale decontratturante di 50 minuti eseguito da terapisti professionisti nel padiglione panoramico tra gli ulivi, accompagnato da oli essenziali biologici di rosmarino ed elicriso toscano.</p>
+                        <span class="experience-duration">💆 Su prenotazione &bull; Tisana distensiva finale</span>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ======================================================================
+         8. SEZIONE "COLAZIONE & ORTO" (L'Eccellenza Gastronomica)
+         ====================================================================== -->
+    <section class="section-breakfast" id="colazione">
+        <div class="breakfast-container">
+            <div class="breakfast-media">
+                <img src="img/colazione-relais.webp" alt="Tavola all'aperto allestita per la colazione toscana con crostate e cappuccino" loading="lazy" decoding="async">
+            </div>
+            <div class="breakfast-content">
+                <span class="section-kicker">Il Rituale del Mattino</span>
+                <h2 class="section-heading">Il sapore delle cose buone, fatte con lentezza.</h2>
+                <p>Crediamo che una giornata speciale debba iniziare senza sveglie e senza orari rigidi. La nostra colazione viene servita ogni mattina dalle 08:00 alle 11:30 sotto il pergolato di glicine o comodamente nella privacy della vostra suite.</p>
+                
+                <div class="breakfast-pillars">
+                    <div class="pillar-row">
+                        <span class="pillar-bullet">01</span>
+                        <div>
+                            <strong>Pasticceria da Forno Quotidiana:</strong>
+                            <p>Ciambelloni al miele di acacia, cantucci caldi e crostate con le confetture di fichi e susine raccolte nel nostro frutteto.</p>
+                        </div>
+                    </div>
+                    <div class="pillar-row">
+                        <span class="pillar-bullet">02</span>
+                        <div>
+                            <strong>La Carta Salata Calda:</strong>
+                            <p>Uova biologiche del pollaio preparate al momento secondo il vostro gusto, prosciutto toscano DOP tagliato al coltello e ricotta di pecora fresca.</p>
+                        </div>
+                    </div>
+                    <div class="pillar-row">
+                        <span class="pillar-bullet">03</span>
+                        <div>
+                            <strong>Attenzione Totale alle Intolleranze:</strong>
+                            <p>Opzioni artigianali senza glutine, latte vegetale biologico e spremute di arance fresche a km zero.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ======================================================================
+         9. SOCIAL PROOF & RECENSIONI OSPITI
+         ====================================================================== -->
+    <section class="section-reviews" aria-label="Valutazioni degli ospiti">
+        <div class="reviews-container">
+            <div class="reviews-header">
+                <div class="rating-badge">
+                    <span class="stars">★★★★★</span>
+                    <strong class="rating-num">4.96 / 5</strong>
+                    <span class="rating-count">(184 recensioni verificate)</span>
+                </div>
+                <h2 class="section-heading">L'esperienza di chi ha vissuto Villa Bellaria</h2>
+            </div>
+
+            <div class="reviews-grid">
+                
+                <div class="review-box">
+                    <div class="review-stars">★★★★★</div>
+                    <p class="review-text">&ldquo;Soggiornare nella Master Suite La Torre è stata una delle esperienze più romantiche della nostra vita. Guardare le stelle dalla vasca idromassaggio con un calice del loro vino non ha prezzo. Il check-in tramite WhatsApp con Lorenzo è stato impeccabile.&rdquo;</p>
+                    <div class="reviewer-meta">
+                        <strong>Elena &amp; Marc</strong>
+                        <span>Ginevra, Svizzera &bull; Settembre 2026</span>
+                    </div>
+                </div>
+
+                <div class="review-box">
+                    <div class="review-stars">★★★★★</div>
+                    <p class="review-text">&ldquo;I veri proprietari toscani: accoglienti, discreti e attenti a ogni minimo dettaglio. La colazione servita sotto il pergolato vale da sola l'intero viaggio. Abbiamo risparmiato prenotando direttamente sul sito senza passare da Booking.&rdquo;</p>
+                    <div class="reviewer-meta">
+                        <strong>Giacomo B.</strong>
+                        <span>Milano, Italia &bull; Agosto 2026</span>
+                    </div>
+                </div>
+
+                <div class="review-box">
+                    <div class="review-stars">★★★★★</div>
+                    <p class="review-text">&ldquo;La calma che si respira qui è indescrivibile. La piscina a sfioro tra gli ulivi è un sogno a occhi aperti. Consiglio a tutti di aggiungere la degustazione vini in vigna: intima, genuina e di altissimo livello.&rdquo;</p>
+                    <div class="reviewer-meta">
+                        <strong>Sarah &amp; David W.</strong>
+                        <span>Austin, USA &bull; Luglio 2026</span>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ======================================================================
+         10. LOGISTICA, TERRITORIO & DISTANZE
+         ====================================================================== -->
+    <section class="section-location" id="territorio">
+        <div class="location-container">
+            <div class="location-header">
+                <span class="section-kicker">La Posizione Geografica</span>
+                <h2 class="section-heading">Nel Cuore della Bellezza Toscana</h2>
+                <p>Villa Bellaria si trova in posizione baricentrica per esplorare agevolmente tutti i tesori della Val d'Orcia senza lunghi trasferimenti.</p>
+            </div>
+
+            <div class="distances-grid">
+                <div class="distance-item">
+                    <span class="dist-icon">🏰</span>
+                    <div class="dist-info">
+                        <strong>Pienza (Città Ideale)</strong>
+                        <span>10 minuti di auto (8 km)</span>
+                    </div>
+                </div>
+                <div class="distance-item">
+                    <span class="dist-icon">♨️</span>
+                    <div class="dist-info">
+                        <strong>Bagno Vignoni (Terme Storiche)</strong>
+                        <span>12 minuti di auto (11 km)</span>
+                    </div>
+                </div>
+                <div class="distance-item">
+                    <span class="dist-icon">🍷</span>
+                    <div class="dist-info">
+                        <strong>Montepulciano (Vino Nobile)</strong>
+                        <span>18 minuti di auto (16 km)</span>
+                    </div>
+                </div>
+                <div class="distance-item">
+                    <span class="dist-icon">🍇</span>
+                    <div class="dist-info">
+                        <strong>Montalcino (Brunello)</strong>
+                        <span>25 minuti di auto (24 km)</span>
+                    </div>
+                </div>
+                <div class="distance-item">
+                    <span class="dist-icon">🚆</span>
+                    <div class="dist-info">
+                        <strong>Stazione FS Chiusi-Chianciano</strong>
+                        <span>20 minuti (Transfer disponibile)</span>
+                    </div>
+                </div>
+                <div class="distance-item">
+                    <span class="dist-icon">✈️</span>
+                    <div class="dist-info">
+                        <strong>Aeroporto di Firenze Peretola</strong>
+                        <span>1h 20 min di auto (120 km)</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ======================================================================
+         11. ACCORDION F.A.Q. OPERATIVE
+         ====================================================================== -->
+    <section class="section-faq" id="faq">
+        <div class="faq-container">
+            <div class="faq-header">
+                <span class="section-kicker">Informazioni Pratiche</span>
+                <h2 class="section-heading">Domande Frequenti sul Soggiorno</h2>
+            </div>
+
+            <div class="faq-accordion-group">
+                
+                <details class="faq-card" open>
+                    <summary class="faq-question">
+                        <span>Quali sono gli orari di Check-in e Check-out? È possibile arrivare di sera tardi?</span>
+                        <span class="faq-toggle-icon">+</span>
+                    </summary>
+                    <div class="faq-answer">
+                        <p>Il check-in ufficiale è previsto dalle <strong>15:00 alle 20:00</strong>. Per arrivi successivi disponiamo di un sistema di <strong>Self-Check-in domotico</strong> tramite codice di accesso personale inviato su WhatsApp, permettendovi di accedere in totale autonomia a qualsiasi ora della notte senza sovrapprezzo.</p>
+                    </div>
+                </details>
+
+                <details class="faq-card">
+                    <summary class="faq-question">
+                        <span>Avete un parcheggio custodito? È presente la ricarica per veicoli elettrici?</span>
+                        <span class="faq-toggle-icon">+</span>
+                    </summary>
+                    <div class="faq-answer">
+                        <p>Sì, la tenuta dispone di un parcheggio privato interno ombreggiato e video-sorvegliato, ad uso gratuito per tutti gli ospiti. Abbiamo inoltre installato due colonnine di ricarica rapida (Type 2 e Tesla Wall Connector) disponibili gratuitamente per chi prenota direttamente dal sito.</p>
+                    </div>
+                </details>
+
+                <details class="faq-card">
+                    <summary class="faq-question">
+                        <span>Gli animali domestici sono ammessi nella struttura?</span>
+                        <span class="faq-toggle-icon">+</span>
+                    </summary>
+                    <div class="faq-answer">
+                        <p>I cani di piccola e media taglia ben educati sono i benvenuti nella <em>Junior Suite Il Giardino</em>, dotata di patio esterno recintato. Vi preghiamo semplicemente di segnalarlo in fase di preventivo per farvi trovare ciotole igienizzate e biscottini artigianali di benvenuto.</p>
+                    </div>
+                </details>
+
+                <details class="faq-card">
+                    <summary class="faq-question">
+                        <span>Offrite servizio transfer dalle stazioni o dagli aeroporti?</span>
+                        <span class="faq-toggle-icon">+</span>
+                    </summary>
+                    <div class="faq-answer">
+                        <p>Sì, collaboriamo con autisti NCC convenzionati per transfer privati dalla stazione ferroviaria di Chiusi-Chianciano Terme (€ 40) e dagli aeroporti di Firenze, Pisa e Roma Fiumicino. Il servizio può essere confermato direttamente con il Concierge via WhatsApp dopo la prenotazione.</p>
+                    </div>
+                </details>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ======================================================================
+         12. FOOTER UFFICIALE
+         ====================================================================== -->
+    <footer class="footer-main">
+        <div class="footer-container">
+            <div class="footer-col brand-col">
+                <span class="footer-logo">VILLA BELLARIA</span>
+                <p class="footer-desc">Country Relais &amp; Historical Retreat nel cuore della Val d'Orcia. Un'esperienza di ospitalità autentica, discreta e rispettosa dei ritmi della natura toscana.</p>
+                <div class="footer-certifications">
+                    <span>Certificazione Biologica ICEA &bull; Dimore Storiche Italiane</span>
+                </div>
+            </div>
+
+            <div class="footer-col">
+                <h4 class="footer-col-title">Navigazione</h4>
+                <ul class="footer-links">
+                    <li><a href="#dimora">La Storia del Relais</a></li>
+                    <li><a href="#suite">Le Tre Suite Private</a></li>
+                    <li><a href="#esperienze">Attività &amp; Degustazioni</a></li>
+                    <li><a href="#colazione">Colazione &amp; Orto</a></li>
+                    <li><a href="#faq">Condizioni di Soggiorno</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h4 class="footer-col-title">Contatti &amp; Concierge</h4>
+                <ul class="footer-contact-list">
+                    <li><span>📍</span> Loc. Bellaria, 14 &bull; 53026 Pienza (SI)</li>
+                    <li><span>📞</span> Tel: +39 0578 123456</li>
+                    <li><span>💬</span> WhatsApp: +39 340 9876543</li>
+                    <li><span>✉️</span> info@villabellaria.it</li>
+                    <li><span>⏱️</span> Reception &bull; 08:00 - 20:00</li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h4 class="footer-col-title">Garanzie Prenotazione</h4>
+                <div class="footer-guarantee-card">
+                    <strong>Miglior Tariffa Web</strong>
+                    <p>Questo portale applica lo sconto automatico del 15% rispetto a tutti i portali terzi.</p>
+                    <span class="security-flag">🔒 Pagamenti Cifrati SSL 256-bit</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <div class="footer-bottom-container">
+                <p>&copy; 2026 Villa Bellaria Country Relais S.r.l. &bull; P.IVA 01489230521 &bull; CIR: 052021AAT0045</p>
+                <p class="credits">Architettura Web ad Alte Prestazioni sviluppata con <strong>The Orbis Project</strong></p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ======================================================================
+         13. MODALE PREVENTIVO INTERATTIVO (Il Cuore della Conversione)
+         ====================================================================== -->
+    <div class="modal-backdrop" id="quoteModal" aria-hidden="true">
+        <div class="modal-dialog">
+            <button class="modal-close-btn" id="closeQuoteModalBtn" aria-label="Chiudi preventivo">&times;</button>
+            
+            <div class="modal-header">
+                <span class="modal-kicker">Riepilogo Preventivo Trasparente</span>
+                <h3 class="modal-title">Il Tuo Soggiorno a Villa Bellaria</h3>
+                <p class="modal-subtitle">Nessuna commissione intermediario. Tariffa diretta garantita con privilegi inclusi.</p>
+            </div>
+
+            <!-- Dettaglio Date & Soggiorno -->
+            <div class="modal-stay-summary">
+                <div class="stay-item">
+                    <span class="label">Date Selezionate:</span>
+                    <strong id="modalStayDates">--/--/---- &rarr; --/--/----</strong>
+                </div>
+                <div class="stay-item">
+                    <span class="label">Durata:</span>
+                    <strong id="modalStayNights">0 Notti</strong>
+                </div>
+                <div class="stay-item">
+                    <span class="label">Ospiti:</span>
+                    <strong id="modalStayGuests">2 Persone</strong>
+                </div>
+                <div class="stay-item">
+                    <span class="label">Suite:</span>
+                    <strong id="modalStaySuiteName">Seleziona una suite</strong>
+                </div>
+            </div>
+
+            <!-- Box Esperienze Extra (Upselling Dinamico) -->
+            <div class="modal-extras-section">
+                <h4 class="extras-title">Personalizza il tuo arrivo con i servizi della Tenuta:</h4>
+                <div class="extras-grid">
+                    
+                    <label class="extra-checkbox-card">
+                        <input type="checkbox" id="extraWineCheck" class="extra-input" data-price-per-guest="45">
+                        <div class="extra-body">
+                            <div class="extra-header">
+                                <strong>Degustazione Vini &amp; Tagliere</strong>
+                                <span class="extra-cost">+ € 45 a persona</span>
+                            </div>
+                            <small>4 calici della nostra riserva biologica con sommelier privato.</small>
+                        </div>
+                    </label>
+
+                    <label class="extra-checkbox-card">
+                        <input type="checkbox" id="extraPicnicCheck" class="extra-input" data-flat-price="35">
+                        <div class="extra-body">
+                            <div class="extra-header">
+                                <strong>Cesto Picnic Gourmet nei Vigneti</strong>
+                                <span class="extra-cost">+ € 35 totale</span>
+                            </div>
+                            <small>Focaccia fatta in casa, pecorini, frutta fresca e vino in borsa termica.</small>
+                        </div>
+                    </label>
+
+                    <label class="extra-checkbox-card">
+                        <input type="checkbox" id="extraBikeCheck" class="extra-input" data-price-per-day="40">
+                        <div class="extra-body">
+                            <div class="extra-header">
+                                <strong>Noleggio E-Bike Giornaliero (2 Bici)</strong>
+                                <span class="extra-cost">+ € 40 / notte</span>
+                            </div>
+                            <small>Pedalata assistita per scoprire i sentieri della Val d'Orcia in libertà.</small>
+                        </div>
+                    </label>
+
+                </div>
+            </div>
+
+            <!-- Tabella Contabile del Preventivo -->
+            <div class="modal-pricing-breakdown">
+                <div class="price-row">
+                    <span>Tariffa Suite su Portali (Booking/Expedia):</span>
+                    <span id="modalPriceOta" class="price-crossed">€ 0.00</span>
+                </div>
+                <div class="price-row highlight-green">
+                    <span>Sconto Prenotazione Diretta Web (-15%):</span>
+                    <span id="modalDiscountValue">- € 0.00</span>
+                </div>
+                <div class="price-row">
+                    <span>Soggiorno Scontato (<span id="modalCalcDays">0</span> notti):</span>
+                    <span id="modalStaySubtotal">€ 0.00</span>
+                </div>
+                <div class="price-row" id="modalExtrasRow">
+                    <span>Esperienze &amp; Extra Aggiunti:</span>
+                    <span id="modalExtrasTotal">€ 0.00</span>
+                </div>
+                <div class="price-row tax-row">
+                    <span>Tassa di Soggiorno Comunale (€ 2.50/notte a ospite):</span>
+                    <span id="modalTouristTax">€ 0.00</span>
+                </div>
+                <div class="price-row total-row">
+                    <div>
+                        <strong>Totale Finale Preventivo:</strong>
+                        <small class="vat-included">IVA 10%, Colazione &amp; Parcheggio Inclusi</small>
+                    </div>
+                    <strong id="modalFinalPrice" class="final-price-tag">€ 0.00</strong>
+                </div>
+            </div>
+
+            <!-- Azioni di Conversione (WhatsApp vs Email) -->
+            <div class="modal-actions-wrapper">
+                <a href="#" id="whatsappBookingBtn" target="_blank" rel="noopener noreferrer" class="btn-whatsapp-action">
+                    <span class="wa-icon">💬</span>
+                    <div class="btn-wa-text">
+                        <strong>Invia Richiesta su WhatsApp</strong>
+                        <small>Ricevi conferma e blocco date in 5 minuti</small>
+                    </div>
+                </a>
+
+                <div class="divider-text">oppure compila con email</div>
+
+                <form id="directInquiryForm" class="inquiry-form">
+                    <div class="form-inputs-row">
+                        <input type="text" id="guestNameInput" placeholder="Nome e Cognome *" required>
+                        <input type="email" id="guestEmailInput" placeholder="Indirizzo Email *" required>
+                    </div>
+                    <div class="form-inputs-row">
+                        <input type="tel" id="guestPhoneInput" placeholder="Recapito Telefonico (es. +39 340 ...)">
+                        <input type="text" id="guestNotesInput" placeholder="Note speciali o orario presunto di arrivo">
+                    </div>
+                    <button type="submit" id="submitEmailInquiryBtn" class="btn-secondary-dark">Invia Richiesta Formale via Email</button>
+                </form>
+                
+                <div id="inquirySuccessMsg" class="success-message hidden">
+                    <span>✨ Grazie! La vostra richiesta per Villa Bellaria è stata presa in carico. Vi risponderemo entro 2 ore con i dettagli di conferma.</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ======================================================================
+         14. CASSETTO OFF-CANVAS DETTAGLI SUITE
+         ====================================================================== -->
+    <div class="drawer-backdrop" id="suiteDrawerBackdrop" aria-hidden="true"></div>
+    <aside class="suite-drawer" id="suiteDrawer" aria-label="Scheda tecnica suite">
+        <div class="drawer-inner-header">
+            <button class="close-suite-drawer-btn" id="closeSuiteDrawerBtn" aria-label="Chiudi dettagli">&times;</button>
+            <span class="drawer-suite-size" id="drawerSuiteSpecs">-- mq &bull; Fino a -- Ospiti</span>
+            <h3 class="drawer-suite-title" id="drawerSuiteTitle">Dettagli Suite</h3>
+        </div>
+        <div class="drawer-inner-body" id="drawerSuiteBody">
+            <!-- Contenuti iniettati dinamicamente da app.js -->
+        </div>
+        <div class="drawer-inner-footer">
+            <div class="drawer-price-indicator">
+                <span class="drawer-label">Tariffa Diretta da:</span>
+                <strong class="drawer-price" id="drawerSuitePrice">€ 0.00</strong>
+            </div>
+            <button type="button" class="btn-primary-gold btn-book-from-drawer" id="drawerBookSuiteBtn">Seleziona per il Preventivo</button>
+        </div>
+    </aside>
+
+    <!-- Motore Logico Applicativo (Calcolatore Preventivo, Preload RAM, WhatsApp Deep-Link) -->
+    <script src="js/app.js" defer></script>
+</body>
+</html>
