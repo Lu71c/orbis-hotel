@@ -149,6 +149,8 @@ button {
     border-radius: var(--radius-xs);
     box-shadow: 0 4px 15px rgba(196, 154, 96, 0.25);
     transition: background-color var(--transition-fast), transform var(--transition-fast), box-shadow var(--transition-fast);
+    /* Previene andata a capo del testo nel pulsante */
+    white-space: nowrap; 
 }
 
 .btn-primary-gold:hover {
@@ -209,6 +211,7 @@ button {
     letter-spacing: 1px;
     padding: 3px 8px;
     border-radius: var(--radius-xs);
+    white-space: nowrap;
 }
 
 /* ==========================================================================
@@ -262,6 +265,7 @@ button {
     align-items: center;
     justify-content: center;
     line-height: 1;
+    flex-shrink: 0; /* Evita che il cerchio si schiacci */
 }
 
 .brand-text {
@@ -276,6 +280,7 @@ button {
     color: var(--text-main);
     font-weight: 600;
     line-height: 1;
+    white-space: nowrap; /* Previene andata a capo del logo */
 }
 
 .brand-sub {
@@ -284,13 +289,14 @@ button {
     letter-spacing: 2px;
     color: var(--text-muted);
     margin-top: 3px;
+    white-space: nowrap;
 }
 
 /* Desktop Nav */
 .desktop-nav {
     display: flex;
     align-items: center;
-    gap: 32px;
+    gap: 28px; /* Leggermente ridotto per tablet */
 }
 
 .nav-link {
@@ -301,6 +307,7 @@ button {
     color: var(--text-main);
     position: relative;
     padding: 4px 0;
+    white-space: nowrap; /* Previene le scritte del menu su due righe */
 }
 
 .nav-link::after {
@@ -723,21 +730,6 @@ button {
 
 .media-frame:hover img {
     transform: scale(1.03);
-}
-
-.media-caption {
-    position: absolute;
-    bottom: 20px;
-    left: 20px;
-    right: 20px;
-    background: rgba(35, 32, 28, 0.85);
-    backdrop-filter: blur(8px);
-    color: #ffffff;
-    padding: 12px 18px;
-    font-size: 0.82rem;
-    font-style: italic;
-    border-radius: var(--radius-xs);
-    border-left: 2px solid var(--accent-gold);
 }
 
 /* ==========================================================================
@@ -1938,6 +1930,17 @@ button {
 /* ==========================================================================
    15. MEDIA QUERIES (TABLET & SMARTPHONE)
    ========================================================================== */
+@media (max-width: 1200px) {
+    /* Fa scattare il menu mobile prima, per evitare rotture nei tablet grandi */
+    .desktop-nav, .header-actions {
+        display: none;
+    }
+
+    .hamburger-btn {
+        display: flex;
+    }
+}
+
 @media (max-width: 1100px) {
     .booking-bar {
         grid-template-columns: 1fr 1fr;
@@ -1971,14 +1974,6 @@ button {
 }
 
 @media (max-width: 900px) {
-    .desktop-nav, .header-actions {
-        display: none;
-    }
-
-    .hamburger-btn {
-        display: flex;
-    }
-
     .storytelling-container,
     .breakfast-container {
         grid-template-columns: 1fr;
