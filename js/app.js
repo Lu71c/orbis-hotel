@@ -15,7 +15,9 @@ document.addEventListener('DOMContentLoaded', () => {
         'img/suite-torre.webp',
         'img/colazione-relais.webp',
         'img/degustazione-vini.webp',
-        'img/scorcio-tenuta.webp'
+        'img/scorcio-tenuta.webp',
+        'img/34.webp',
+        'img/35.webp'
     ];
 
     preloadImages.forEach(src => {
@@ -117,7 +119,7 @@ document.addEventListener('DOMContentLoaded', () => {
             
             checkOutInput.setAttribute('min', newMinCheckOut);
             
-            // Se il check-out precedente è diventato illegale, lo resetta
+            // Se il check-out precedente è diventato non valido, lo resetta
             if (new Date(checkOutInput.value) <= new Date(selectedCheckIn)) {
                 checkOutInput.value = newMinCheckOut;
             }
@@ -145,7 +147,6 @@ document.addEventListener('DOMContentLoaded', () => {
             noticeBox.classList.add('hidden');
         }
     }
-
 
     /* ==========================================================================
        5. MODALE PREVENTIVO & PRICING ENGINE
@@ -222,7 +223,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Motore Principale di Calcolo Preventivo
     function calculateAndRenderQuote() {
-        // Estrazione dati freschi dai checkbox extra
         let extrasSum = 0;
         
         if (extraWine && extraWine.checked) {
@@ -281,7 +281,6 @@ document.addEventListener('DOMContentLoaded', () => {
             
             if(!checkIn || !checkOut) return;
 
-            // Calcolo notti esatte
             const dIn = new Date(checkIn);
             const dOut = new Date(checkOut);
             const nights = Math.max(1, Math.ceil((dOut.getTime() - dIn.getTime()) / (1000 * 3600 * 24)));
@@ -290,7 +289,6 @@ document.addEventListener('DOMContentLoaded', () => {
             const suiteId = document.getElementById('suiteSelect').value;
             const suiteData = CONFIG.suites[suiteId];
 
-            // Salvataggio nello stato globale
             currentQuote.checkIn = checkIn;
             currentQuote.checkOut = checkOut;
             currentQuote.nights = nights;
@@ -300,7 +298,6 @@ document.addEventListener('DOMContentLoaded', () => {
             currentQuote.baseRate = suiteData.basePrice;
             currentQuote.otaRate = suiteData.otaPrice;
 
-            // Avvia Calcolo e Apre Modale
             calculateAndRenderQuote();
             toggleQuoteModal(true);
         });
@@ -319,7 +316,6 @@ document.addEventListener('DOMContentLoaded', () => {
     function updateWhatsAppLink() {
         if (!waBtn) return;
         
-        // Creazione Stringa Dinamica Elegante
         let message = `🌿 *Richiesta Prenotazione VILLA BELLARIA*\n\n`;
         message += `Salve, desidero verificare la disponibilità per:\n`;
         message += `🛏️ Alloggio: *${currentQuote.suiteName}*\n`;
@@ -351,12 +347,10 @@ document.addEventListener('DOMContentLoaded', () => {
         emailForm.addEventListener('submit', (e) => {
             e.preventDefault();
             const submitBtn = document.getElementById('submitEmailInquiryBtn');
-            const originalText = submitBtn.textContent;
             
             submitBtn.textContent = 'Invio in corso... ⏳';
             submitBtn.disabled = true;
 
-            // Fake API Call Delay
             setTimeout(() => {
                 emailForm.classList.add('hidden');
                 successMsg.classList.remove('hidden');
@@ -374,17 +368,13 @@ document.addEventListener('DOMContentLoaded', () => {
             const suiteId = e.currentTarget.getAttribute('data-suite');
             const selectElement = document.getElementById('suiteSelect');
             
-            // Imposta la tendina della booking bar su questa suite specifica
             if (selectElement) {
                 selectElement.value = suiteId;
             }
             
-            // Simula il click sul pulsante "Calcola Preventivo" della Hero
             const calcBtn = document.getElementById('calcBookingBtn');
             if (calcBtn) {
-                // Scorri su per mostrare l'utente cosa sta succedendo
                 window.scrollTo({ top: 0, behavior: 'smooth' });
-                // Dopo un istante calcola e apre il modale
                 setTimeout(() => calcBtn.click(), 500);
             }
         });
@@ -397,14 +387,12 @@ document.addEventListener('DOMContentLoaded', () => {
     const suiteDrawerBackdrop = document.getElementById('suiteDrawerBackdrop');
     const closeSuiteDrawerBtn = document.getElementById('closeSuiteDrawerBtn');
     
-    // Nodi interni al cassetto
     const drawerSpecs = document.getElementById('drawerSuiteSpecs');
     const drawerTitle = document.getElementById('drawerSuiteTitle');
     const drawerBody = document.getElementById('drawerSuiteBody');
     const drawerPrice = document.getElementById('drawerSuitePrice');
     const drawerBookBtn = document.getElementById('drawerBookSuiteBtn');
 
-    // Database Architettonico Dettagliato
     const suiteDetailsDB = {
         'suite-giardino': {
             specs: '35 mq • Fino a 2 Ospiti • Piano Terra',
@@ -476,7 +464,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function toggleSuiteDrawer(show, suiteId = null) {
         if (show && suiteId && suiteDetailsDB[suiteId]) {
-            // Popola Dati
             const data = suiteDetailsDB[suiteId];
             drawerSpecs.textContent = data.specs;
             drawerTitle.textContent = data.title;
@@ -484,13 +471,11 @@ document.addEventListener('DOMContentLoaded', () => {
             drawerPrice.textContent = `€ ${data.price}`;
             drawerBookBtn.setAttribute('data-target-suite', suiteId);
 
-            // Apri
             suiteDrawer.classList.add('open');
             suiteDrawerBackdrop.classList.add('open');
             suiteDrawerBackdrop.setAttribute('aria-hidden', 'false');
             document.body.classList.add('no-scroll');
         } else {
-            // Chiudi
             suiteDrawer.classList.remove('open');
             suiteDrawerBackdrop.classList.remove('open');
             suiteDrawerBackdrop.setAttribute('aria-hidden', 'true');
@@ -516,16 +501,15 @@ document.addEventListener('DOMContentLoaded', () => {
     if (drawerBookBtn) {
         drawerBookBtn.addEventListener('click', (e) => {
             const suiteId = e.currentTarget.getAttribute('data-target-suite');
-            toggleSuiteDrawer(false); // Chiude il cassetto
+            toggleSuiteDrawer(false);
             
-            // Imposta tendina e lancia booking (come i pulsanti card)
             const selectElement = document.getElementById('suiteSelect');
             if (selectElement) selectElement.value = suiteId;
             
             const calcBtn = document.getElementById('calcBookingBtn');
             if (calcBtn) {
                 window.scrollTo({ top: 0, behavior: 'smooth' });
-                setTimeout(() => calcBtn.click(), 600); // Ritardo leggermente maggiore per animazione fluida
+                setTimeout(() => calcBtn.click(), 600);
             }
         });
     }
