@@ -1,30 +1,30 @@
 /* ==========================================================================
    VILLA BELLARIA | COUNTRY RELAIS & RETREAT - FOGLIO DI STILE (css/style.css)
-   Design System: Country Luxury Toscano, Tipografia Editoriale, Micro-Interazioni
+   Design System: Nobile Ambra Toscana, Legno Castagno Cerato, Oro Satinato
    ========================================================================== */
 
 :root {
-    /* Palette Colori Primaria (Tuscan Country Luxury) */
-    --bg-stone: #f8f6f0;           /* Tonalità calce e travertino caldo */
-    --bg-card: #ffffff;            /* Bianco puro per schede e moduli */
-    --bg-card-soft: #f4f1ea;       /* Pietra chiara per sfondi neutri */
-    --bg-dark: #23201c;            /* Antracite caldo, terra d'ombra profonda */
-    --bg-dark-surface: #2d2924;    /* Elevazione scura per card interne */
+    /* Palette Calda Ambrata & Legno d'Epoca (Tuscan Old-Money Elegance) */
+    --bg-stone: #f0e7d5;           /* Ambra pergamena calda e signorile per lo sfondo globale */
+    --bg-card: #f9f4ea;            /* Avorio ambrato luminoso e setoso per card e moduli */
+    --bg-card-soft: #e5dbcb;       /* Sabbia ambrata morbida per sfondi secondari e box */
+    --bg-dark: #241b14;            /* Noce bruno scurissimo e profondo (calore del legno antico) */
+    --bg-dark-surface: #32251c;    /* Legno castagno cerato caldo per contrasti interni */
     
-    --text-main: #2b2823;          /* Brunito scuro profondo per titoli e body */
-    --text-muted: #6b645b;         /* Grigio pietra caldo per descrizioni */
-    --text-light: #948c82;         /* Sabbia per didascalie e metadati */
-    --text-inverse: #f9f8f5;       /* Bianco caldo per testi su fondo scuro */
+    --text-main: #2b2016;          /* Terra d'ombra bruciata profonda (massima leggibilità, mai nero freddo) */
+    --text-muted: #6e5c4d;         /* Corteccia calda per descrizioni e sottotitoli */
+    --text-light: #998370;         /* Corda dorata per metadati e didascalie */
+    --text-inverse: #fbf8f2;       /* Avorio puro per testi su fondo legno scuro */
     
-    --accent-sage: #5b6856;        /* Verde salvia toscano per dettagli botanici */
-    --accent-sage-light: #eef1ed;  /* Bagno salvia tenue per pillole e tag */
-    --accent-terracotta: #b86244;  /* Terracotta caldo per sconti e risalto */
-    --accent-gold: #c49a60;        /* Oro antico satinato per pulsanti luxury */
-    --accent-gold-hover: #b0874e;  /* Oro brunito per stati hover */
+    --accent-sage: #53624a;        /* Verde oliva toscano per dettagli botanici e armonia naturale */
+    --accent-sage-light: #e2e7dd;  /* Bagno tenue salvia-oliva per pillole e risparmi */
+    --accent-terracotta: #ab5737;  /* Terracotta toscana baciata dal fuoco per sconti e badge */
+    --accent-gold: #be8e4b;        /* Oro antico ambrato satinato per bottoni e monogrammi */
+    --accent-gold-hover: #a67938;  /* Bronzo dorato brunito per stati hover */
     
-    --border-light: rgba(43, 40, 35, 0.08);
-    --border-gold: rgba(196, 154, 96, 0.35);
-    --border-dark: rgba(255, 255, 255, 0.1);
+    --border-light: rgba(60, 42, 28, 0.12); /* Tratto sottile color legno caldo */
+    --border-gold: rgba(190, 142, 75, 0.4);
+    --border-dark: rgba(240, 225, 205, 0.12);
     
     /* Tipografia */
     --font-heading: 'Cormorant Garamond', Georgia, serif;
@@ -37,11 +37,11 @@
     --radius-lg: 20px;
     --radius-pill: 999px;
     
-    /* Ombreggiature & Elevazioni */
-    --shadow-subtle: 0 4px 20px rgba(35, 32, 28, 0.04);
-    --shadow-floating: 0 16px 40px rgba(35, 32, 28, 0.08);
-    --shadow-hover: 0 20px 50px rgba(35, 32, 28, 0.12);
-    --shadow-drawer: -12px 0 50px rgba(0, 0, 0, 0.2);
+    /* Ombreggiature & Profondità Vellutata */
+    --shadow-subtle: 0 4px 20px rgba(36, 27, 20, 0.06);
+    --shadow-floating: 0 16px 40px rgba(36, 27, 20, 0.11);
+    --shadow-hover: 0 20px 50px rgba(36, 27, 20, 0.16);
+    --shadow-drawer: -12px 0 50px rgba(20, 14, 10, 0.28);
     
     /* Transizioni Fluide */
     --ease-natural: cubic-bezier(0.25, 1, 0.5, 1);
@@ -147,16 +147,15 @@ button {
     letter-spacing: 1.8px;
     padding: 14px 28px;
     border-radius: var(--radius-xs);
-    box-shadow: 0 4px 15px rgba(196, 154, 96, 0.25);
+    box-shadow: 0 4px 15px rgba(190, 142, 75, 0.28);
     transition: background-color var(--transition-fast), transform var(--transition-fast), box-shadow var(--transition-fast);
-    /* Previene andata a capo del testo nel pulsante */
-    white-space: nowrap; 
+    white-space: nowrap;
 }
 
 .btn-primary-gold:hover {
     background-color: var(--accent-gold-hover);
     transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(196, 154, 96, 0.35);
+    box-shadow: 0 6px 22px rgba(190, 142, 75, 0.38);
 }
 
 .btn-secondary-dark {
@@ -176,7 +175,7 @@ button {
 }
 
 .btn-secondary-dark:hover {
-    background-color: #000000;
+    background-color: #140e0a;
     transform: translateY(-2px);
 }
 
@@ -189,7 +188,7 @@ button {
     padding: 9px 5%;
     font-size: 0.78rem;
     letter-spacing: 0.8px;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    border-bottom: 1px solid rgba(240, 225, 205, 0.08);
 }
 
 .announcement-content {
@@ -223,7 +222,7 @@ button {
     left: 0;
     width: 100%;
     z-index: 1000;
-    background-color: rgba(248, 246, 240, 0.94);
+    background-color: rgba(240, 231, 213, 0.94);
     backdrop-filter: blur(14px);
     -webkit-backdrop-filter: blur(14px);
     border-bottom: 1px solid var(--border-light);
@@ -232,8 +231,8 @@ button {
 
 .header-main.scrolled {
     padding: 4px 0;
-    background-color: rgba(248, 246, 240, 0.98);
-    box-shadow: 0 4px 20px rgba(35, 32, 28, 0.05);
+    background-color: rgba(240, 231, 213, 0.98);
+    box-shadow: 0 4px 20px rgba(36, 27, 20, 0.08);
 }
 
 .header-container {
@@ -265,7 +264,7 @@ button {
     align-items: center;
     justify-content: center;
     line-height: 1;
-    flex-shrink: 0; /* Evita che il cerchio si schiacci */
+    flex-shrink: 0;
 }
 
 .brand-text {
@@ -280,7 +279,7 @@ button {
     color: var(--text-main);
     font-weight: 600;
     line-height: 1;
-    white-space: nowrap; /* Previene andata a capo del logo */
+    white-space: nowrap;
 }
 
 .brand-sub {
@@ -296,7 +295,7 @@ button {
 .desktop-nav {
     display: flex;
     align-items: center;
-    gap: 28px; /* Leggermente ridotto per tablet */
+    gap: 28px;
 }
 
 .nav-link {
@@ -307,7 +306,7 @@ button {
     color: var(--text-main);
     position: relative;
     padding: 4px 0;
-    white-space: nowrap; /* Previene le scritte del menu su due righe */
+    white-space: nowrap;
 }
 
 .nav-link::after {
@@ -361,7 +360,7 @@ button {
     flex-direction: column;
     transform: translateX(-100%);
     transition: transform var(--transition-medium);
-    box-shadow: 10px 0 40px rgba(0,0,0,0.15);
+    box-shadow: 10px 0 40px rgba(0,0,0,0.22);
 }
 
 .mobile-drawer.open {
@@ -374,6 +373,7 @@ button {
     justify-content: space-between;
     align-items: center;
     border-bottom: 1px solid var(--border-light);
+    background-color: var(--bg-card);
 }
 
 .drawer-brand .brand-name {
@@ -405,6 +405,7 @@ button {
     border-top: 1px solid var(--border-light);
     font-size: 0.8rem;
     color: var(--text-muted);
+    background-color: var(--bg-card);
 }
 
 .drawer-phone {
@@ -441,8 +442,8 @@ button {
     inset: 0;
     background: linear-gradient(
         to bottom,
-        rgba(35, 32, 28, 0.45) 0%,
-        rgba(35, 32, 28, 0.75) 100%
+        rgba(36, 27, 20, 0.48) 0%,
+        rgba(36, 27, 20, 0.8) 100%
     );
     z-index: 1;
 }
@@ -466,16 +467,16 @@ button {
 .hero-title {
     font-size: clamp(2.8rem, 6.5vw, 5rem);
     margin-bottom: 1.4rem;
-    text-shadow: 0 3px 15px rgba(0, 0, 0, 0.4);
+    text-shadow: 0 3px 18px rgba(0, 0, 0, 0.5);
 }
 
 .hero-desc {
     font-size: clamp(1rem, 1.6vw, 1.2rem);
     font-weight: 300;
-    color: #ece8e1;
+    color: #f7efe1;
     max-width: 720px;
     margin: 0 auto 2rem;
-    text-shadow: 0 1px 8px rgba(0, 0, 0, 0.35);
+    text-shadow: 0 1px 8px rgba(0, 0, 0, 0.4);
 }
 
 .hero-meta-badges {
@@ -485,7 +486,7 @@ button {
     font-size: 0.85rem;
     text-transform: uppercase;
     letter-spacing: 1.5px;
-    color: #e2ddd3;
+    color: #e9decb;
     flex-wrap: wrap;
 }
 
@@ -553,7 +554,7 @@ button {
 }
 
 .booking-field select option {
-    background: #ffffff;
+    background: var(--bg-card);
     color: var(--text-main);
 }
 
@@ -581,11 +582,11 @@ button {
 .booking-notice {
     padding: 12px;
     margin-top: 10px;
-    background-color: #fff9ea;
-    border: 1px solid #f0dfa8;
+    background-color: #f7ecd2;
+    border: 1px solid #e2c88d;
     border-radius: var(--radius-xs);
     font-size: 0.85rem;
-    color: #856404;
+    color: #734e06;
     text-align: center;
 }
 
@@ -671,6 +672,7 @@ button {
     color: var(--text-main);
     line-height: 1.4;
     border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+    box-shadow: var(--shadow-subtle);
 }
 
 .storytelling-quote cite {
@@ -719,6 +721,7 @@ button {
     border-radius: var(--radius-sm);
     overflow: hidden;
     box-shadow: var(--shadow-floating);
+    border: 1px solid var(--border-light);
 }
 
 .media-frame img {
@@ -807,7 +810,7 @@ button {
     position: absolute;
     top: 20px;
     left: 20px;
-    background-color: rgba(35, 32, 28, 0.85);
+    background-color: rgba(36, 27, 20, 0.88);
     backdrop-filter: blur(6px);
     color: #ffffff;
     font-size: 0.72rem;
@@ -1000,7 +1003,7 @@ button {
     position: absolute;
     bottom: 14px;
     right: 14px;
-    background: rgba(35, 32, 28, 0.85);
+    background: rgba(36, 27, 20, 0.88);
     backdrop-filter: blur(6px);
     color: #ffffff;
     font-size: 0.78rem;
@@ -1069,6 +1072,7 @@ button {
     object-fit: cover;
     border-radius: var(--radius-sm);
     box-shadow: var(--shadow-floating);
+    border: 1px solid var(--border-light);
 }
 
 .breakfast-content p {
@@ -1142,7 +1146,7 @@ button {
 }
 
 .rating-badge .stars {
-    color: #e6a817;
+    color: #cb8926;
     letter-spacing: 2px;
 }
 
@@ -1173,7 +1177,7 @@ button {
 }
 
 .review-stars {
-    color: #e6a817;
+    color: #cb8926;
     margin-bottom: 16px;
     letter-spacing: 2px;
 }
@@ -1352,7 +1356,7 @@ button {
 
 .footer-desc {
     font-size: 0.88rem;
-    color: #a49e96;
+    color: #b7a998;
     line-height: 1.7;
     margin-bottom: 24px;
 }
@@ -1383,7 +1387,7 @@ button {
 
 .footer-links a {
     font-size: 0.88rem;
-    color: #b5afa7;
+    color: #c8bcad;
 }
 
 .footer-links a:hover {
@@ -1396,7 +1400,7 @@ button {
     flex-direction: column;
     gap: 12px;
     font-size: 0.88rem;
-    color: #b5afa7;
+    color: #c8bcad;
 }
 
 .footer-contact-list li {
@@ -1420,14 +1424,14 @@ button {
 
 .footer-guarantee-card p {
     font-size: 0.82rem;
-    color: #b5afa7;
+    color: #b7a998;
     margin-bottom: 14px;
 }
 
 .security-flag {
     display: block;
     font-size: 0.75rem;
-    color: #8c867e;
+    color: #9c8e7e;
 }
 
 .footer-bottom {
@@ -1441,13 +1445,13 @@ button {
     display: flex;
     justify-content: space-between;
     font-size: 0.78rem;
-    color: #7d776f;
+    color: #8c7e70;
     flex-wrap: wrap;
     gap: 12px;
 }
 
 .footer-bottom .credits strong {
-    color: #b5afa7;
+    color: #c8bcad;
 }
 
 /* ==========================================================================
@@ -1456,7 +1460,7 @@ button {
 .modal-backdrop {
     position: fixed;
     inset: 0;
-    background-color: rgba(20, 18, 16, 0.85);
+    background-color: rgba(22, 16, 11, 0.86);
     backdrop-filter: blur(8px);
     -webkit-backdrop-filter: blur(8px);
     z-index: 3000;
@@ -1481,11 +1485,12 @@ button {
     max-height: 90vh;
     overflow-y: auto;
     border-radius: var(--radius-sm);
-    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.35);
+    box-shadow: 0 25px 60px rgba(18, 12, 8, 0.45);
     position: relative;
     padding: 40px;
     transform: translateY(20px);
     transition: transform var(--transition-medium);
+    border: 1px solid var(--border-light);
 }
 
 .modal-backdrop.open .modal-dialog {
@@ -1594,7 +1599,7 @@ button {
 
 .extra-checkbox-card:has(.extra-input:checked) {
     border-color: var(--accent-gold);
-    background-color: #faf6ee;
+    background-color: #f2e7d3;
 }
 
 .extra-input {
@@ -1781,11 +1786,11 @@ button {
 .success-message {
     margin-top: 14px;
     padding: 14px;
-    background: #eef6ec;
-    border: 1px solid #c2e2bd;
+    background: #e8eee4;
+    border: 1px solid #b7ceb1;
     border-radius: var(--radius-xs);
     font-size: 0.88rem;
-    color: #2e6624;
+    color: #274e1d;
     text-align: center;
 }
 
@@ -1795,7 +1800,7 @@ button {
 .drawer-backdrop {
     position: fixed;
     inset: 0;
-    background-color: rgba(20, 18, 16, 0.6);
+    background-color: rgba(22, 16, 11, 0.65);
     backdrop-filter: blur(4px);
     -webkit-backdrop-filter: blur(4px);
     z-index: 2500;
@@ -1931,7 +1936,6 @@ button {
    15. MEDIA QUERIES (TABLET & SMARTPHONE)
    ========================================================================== */
 @media (max-width: 1200px) {
-    /* Fa scattare il menu mobile prima, per evitare rotture nei tablet grandi */
     .desktop-nav, .header-actions {
         display: none;
     }
