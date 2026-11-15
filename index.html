@@ -17,17 +17,19 @@
     <!-- Foglio di Stile Esterno -->
     <link rel="stylesheet" href="css/style.css">
 </head>
-<body>
+<body data-orbis-site="villa-bellaria">
 
     <!-- ======================================================================
          1. ANNOUNCEMENT BAR (Disintermediazione & Garanzie)
          ====================================================================== -->
+    <!-- ORBIS-SECTION: announcement | Barra Annunci & Offerte -->
     <aside class="announcement-bar" aria-label="Comunicazioni sulle prenotazioni dirette">
         <div class="announcement-content">
-            <span class="badge-gold">Privilegio Web</span>
-            <p>Miglior Tariffa Garantita (-15% rispetto a Booking) &bull; Calice di Chianti di Benvenuto &bull; Cancellazione Flessibile</p>
+            <!-- ORBIS-SUBTITLE --><span class="badge-gold">Privilegio Web</span><!-- /ORBIS-SUBTITLE -->
+            <!-- ORBIS-DESC --><p>Miglior Tariffa Garantita (-15% rispetto a Booking) &bull; Calice di Chianti di Benvenuto &bull; Cancellazione Flessibile</p><!-- /ORBIS-DESC -->
         </div>
     </aside>
+    <!-- /ORBIS-SECTION: announcement -->
 
     <!-- ======================================================================
          2. HEADER TRASLUCIDO & NAVIGAZIONE
@@ -62,7 +64,7 @@
 
             <!-- CTA Prenotazione Rapida -->
             <div class="header-actions">
-                <a href="#bookingBarSection" class="btn-primary-gold btn-header">
+                <a href="#bookingBarSection" class="btn-primary-gold btn-header" data-orbis-track="cta-header-verifica-date" data-orbis-label="Header: Verifica Date">
                     <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
                     <span>Verifica Date</span>
                 </a>
@@ -89,7 +91,7 @@
         </nav>
         <div class="drawer-footer">
             <p class="drawer-contact-label">Assistenza Diretta Concierge:</p>
-            <a href="tel:+390578123456" class="drawer-phone">+39 0578 123456</a>
+            <a href="tel:+390578123456" class="drawer-phone" data-orbis-track="cta-telefono-concierge" data-orbis-label="Telefono Concierge">+39 0578 123456</a>
             <span class="drawer-coords">Coordinate GPS: 43.0562&deg; N, 11.6784&deg; E</span>
         </div>
     </div>
@@ -97,12 +99,13 @@
     <!-- ======================================================================
          3. HERO PRINCIPALE & FLOATING BOOKING BAR
          ====================================================================== -->
+    <!-- ORBIS-SECTION: hero | Hero & Copertina Principale -->
     <section class="hero-section" style="background-image: url('img/hero-relais.webp');">
         <div class="hero-overlay"></div>
         <div class="hero-content">
-            <span class="hero-eyebrow">Benvenuti nel silenzio della Val d'Orcia</span>
-            <h1 class="hero-title">Il lusso autentico del tempo ritrovato.</h1>
-            <p class="hero-desc">Un casale cinquecentesco restaurato nella pietra e nel legno antico. Tre sole suite, piscina a sfioro tra gli ulivi e la pace incontaminata delle colline toscane.</p>
+            <!-- ORBIS-SUBTITLE --><span class="hero-eyebrow">Benvenuti nel silenzio della Val d'Orcia</span><!-- /ORBIS-SUBTITLE -->
+            <!-- ORBIS-TITLE --><h1 class="hero-title">Il lusso autentico del tempo ritrovato.</h1><!-- /ORBIS-TITLE -->
+            <!-- ORBIS-DESC --><p class="hero-desc">Un casale cinquecentesco restaurato nella pietra e nel legno antico. Tre sole suite, piscina a sfioro tra gli ulivi e la pace incontaminata delle colline toscane.</p><!-- /ORBIS-DESC -->
             
             <div class="hero-meta-badges">
                 <span class="meta-item">&bull; Solo 3 alloggi riservati</span>
@@ -111,6 +114,7 @@
             </div>
         </div>
     </section>
+    <!-- /ORBIS-SECTION: hero -->
 
     <!-- Booking Bar Fluttuante -->
     <div class="booking-bar-anchor" id="bookingBarSection">
@@ -164,7 +168,7 @@
 
                 <!-- Tasto Calcola Preventivo -->
                 <div class="booking-field-action">
-                    <button type="submit" id="calcBookingBtn" class="btn-calc-booking">
+                    <button type="submit" id="calcBookingBtn" class="btn-calc-booking" data-orbis-track="cta-calcola-preventivo" data-orbis-label="Booking Bar: Calcola Preventivo">
                         <span>Calcola Preventivo</span>
                         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
                     </button>
@@ -179,13 +183,14 @@
     <!-- ======================================================================
          4. THE DIRECT TRUST STRIP (I Vantaggi Diretti)
          ====================================================================== -->
+    <!-- ORBIS-SECTION: vantaggi | Vantaggi Prenotazione Diretta -->
     <section class="trust-strip-section" aria-label="Vantaggi per prenotazioni dirette">
         <div class="trust-strip-container">
             <div class="trust-card">
                 <div class="trust-icon-box">🏷️</div>
                 <div class="trust-body">
-                    <h4>Miglior Tariffa Web Garantita</h4>
-                    <p>Risparmio effettivo del 15% rispetto a Booking.com ed Expedia senza intermediari.</p>
+                    <!-- ORBIS-TITLE --><h4>Miglior Tariffa Web Garantita</h4><!-- /ORBIS-TITLE -->
+                    <!-- ORBIS-DESC --><p>Risparmio effettivo del 15% rispetto a Booking.com ed Expedia senza intermediari.</p><!-- /ORBIS-DESC -->
                 </div>
             </div>
             <div class="trust-card">
@@ -211,23 +216,25 @@
             </div>
         </div>
     </section>
+    <!-- /ORBIS-SECTION: vantaggi -->
 
     <!-- ======================================================================
          5. SEZIONE "LA DIMORA" (Storytelling & Identità)
          ====================================================================== -->
+    <!-- ORBIS-SECTION: dimora | La Dimora & Storia -->
     <section class="section-storytelling" id="dimora">
         <div class="storytelling-container">
             <div class="storytelling-content">
-                <span class="section-kicker">La Nostra Filosofia</span>
-                <h2 class="section-heading">Una storia d'amore per la pietra toscana.</h2>
-                <div class="storytelling-prose">
+                <!-- ORBIS-SUBTITLE --><span class="section-kicker">La Nostra Filosofia</span><!-- /ORBIS-SUBTITLE -->
+                <!-- ORBIS-TITLE --><h2 class="section-heading">Una storia d'amore per la pietra toscana.</h2><!-- /ORBIS-TITLE -->
+                <!-- ORBIS-DESC --><div class="storytelling-prose">
                     <p>Villa Bellaria sorge su un promontorio naturale affacciato sulla Val d'Orcia, originariamente eretta nel 1584 come stazione di sosta lungo le antiche vie commerciali tra Pienza e Siena.</p>
                     <p>Oggi, dopo cinque anni di minuzioso restauro condotto nel pieno rispetto delle Belle Arti, abbiamo trasformato l'antico podere in un ritiro intimo con sole tre suite padronali. Manteniamo pavimenti in cotto fatto a mano, solai in travi di castagno centenario e pareti in pietra serena che respirano con le stagioni.</p>
                     <blockquote class="storytelling-quote">
                         "Non abbiamo aggiunto stanze per aumentare i numeri; abbiamo tolto pareti per regalare respiro, luce e silenzio a chi sceglie di fermarsi."
                         <cite>&mdash; Caterina &amp; Lorenzo, Custodi della Tenuta</cite>
                     </blockquote>
-                </div>
+                </div><!-- /ORBIS-DESC -->
                 <div class="storytelling-badges">
                     <div class="badge-item">
                         <strong>1584</strong>
@@ -245,41 +252,45 @@
             </div>
             <div class="storytelling-media">
                 <div class="media-frame">
-                    <img src="img/scorcio-tenuta.webp" alt="Scorcio architettonico della tenuta Villa Bellaria tra muretti a secco e cipressi" loading="lazy" decoding="async">
+                    <!-- ORBIS-IMG --><img src="img/scorcio-tenuta.webp" alt="Scorcio architettonico della tenuta Villa Bellaria tra muretti a secco e cipressi" loading="lazy" decoding="async"><!-- /ORBIS-IMG -->
                 </div>
             </div>
         </div>
     </section>
+    <!-- /ORBIS-SECTION: dimora -->
 
     <!-- ======================================================================
          6. SEZIONE "LE SUITE" (3 Camere con Comparatore di Prezzo)
          ====================================================================== -->
     <section class="section-suites" id="suite">
+        <!-- ORBIS-SECTION: suite-intro | Le Suite - Intestazione -->
         <div class="suites-header-wrapper">
-            <span class="section-kicker">Ospitalità Riservata</span>
-            <h2 class="section-heading">La Collezione delle Tre Suite</h2>
-            <p class="suites-subtitle">Ogni camera possiede un'anima indipendente, arredi su misura di maestri artigiani locali e ingresso privato.</p>
+            <!-- ORBIS-SUBTITLE --><span class="section-kicker">Ospitalità Riservata</span><!-- /ORBIS-SUBTITLE -->
+            <!-- ORBIS-TITLE --><h2 class="section-heading">La Collezione delle Tre Suite</h2><!-- /ORBIS-TITLE -->
+            <!-- ORBIS-DESC --><p class="suites-subtitle">Ogni camera possiede un'anima indipendente, arredi su misura di maestri artigiani locali e ingresso privato.</p><!-- /ORBIS-DESC -->
         </div>
+        <!-- /ORBIS-SECTION: suite-intro -->
 
         <div class="suites-list">
             
             <!-- SUITE 1: JUNIOR SUITE IL GIARDINO -->
+            <!-- ORBIS-SECTION: suite-giardino | Suite 1 - Junior Suite Il Giardino -->
             <article class="suite-card" data-id="suite-giardino" data-name="Junior Suite Il Giardino" data-price-direct="160" data-price-ota="190" data-guests="2" data-sqm="35">
                 <div class="suite-media">
-                    <img src="img/suite-giardino.webp" alt="Junior Suite Il Giardino - Camera da letto in lino naturale con vista uliveto" loading="lazy" decoding="async">
+                    <!-- ORBIS-IMG --><img src="img/suite-giardino.webp" alt="Junior Suite Il Giardino - Camera da letto in lino naturale con vista uliveto" loading="lazy" decoding="async"><!-- /ORBIS-IMG -->
                     <span class="suite-tag-pill">Piano Terra &bull; Accesso Giardino</span>
                 </div>
                 <div class="suite-details">
                     <div class="suite-meta-header">
-                        <span class="suite-size">35 mq &bull; Fino a 2 Ospiti</span>
+                        <!-- ORBIS-SUBTITLE --><span class="suite-size">35 mq &bull; Fino a 2 Ospiti</span><!-- /ORBIS-SUBTITLE -->
                         <div class="suite-price-comparison">
                             <span class="ota-price">OTA: € 190</span>
                             <span class="direct-price">da <strong>€ 160</strong> / notte</span>
                             <span class="direct-savings-badge">Risparmi € 30</span>
                         </div>
                     </div>
-                    <h3 class="suite-title">Junior Suite &ldquo;Il Giardino&rdquo;</h3>
-                    <p class="suite-desc">Affacciata direttamente sul pergolato di rose bianche e sull'antico uliveto. Pavimenti in cotto antico cerato a mano, lenzuola in lino grezzo e doccia a pioggia scavata nel travertino toscano.</p>
+                    <!-- ORBIS-TITLE --><h3 class="suite-title">Junior Suite &ldquo;Il Giardino&rdquo;</h3><!-- /ORBIS-TITLE -->
+                    <!-- ORBIS-DESC --><p class="suite-desc">Affacciata direttamente sul pergolato di rose bianche e sull'antico uliveto. Pavimenti in cotto antico cerato a mano, lenzuola in lino grezzo e doccia a pioggia scavata nel travertino toscano.</p><!-- /ORBIS-DESC -->
                     
                     <ul class="suite-amenities-list">
                         <li><span>🌿</span> Patio privato con sdraio</li>
@@ -290,29 +301,31 @@
                     </ul>
 
                     <div class="suite-actions">
-                        <button type="button" class="btn-open-drawer" data-suite="suite-giardino">Scheda Completa &amp; Servizi</button>
-                        <button type="button" class="btn-select-suite btn-primary-gold" data-suite="suite-giardino">Prenota a € 160</button>
+                        <button type="button" class="btn-open-drawer" data-suite="suite-giardino" data-orbis-track="suite-giardino-dettagli" data-orbis-label="Scheda: Suite Il Giardino">Scheda Completa &amp; Servizi</button>
+                        <button type="button" class="btn-select-suite btn-primary-gold" data-suite="suite-giardino" data-orbis-track="suite-giardino-prenota" data-orbis-label="Prenota: Suite Il Giardino">Prenota a € 160</button>
                     </div>
                 </div>
             </article>
+            <!-- /ORBIS-SECTION: suite-giardino -->
 
             <!-- SUITE 2: DELUXE SUITE LA TERRAZZA -->
+            <!-- ORBIS-SECTION: suite-deluxe | Suite 2 - Deluxe Suite La Terrazza -->
             <article class="suite-card suite-card-reversed" data-id="suite-deluxe" data-name="Deluxe Suite La Terrazza" data-price-direct="220" data-price-ota="265" data-guests="2" data-sqm="45">
                 <div class="suite-media">
-                    <img src="img/suite-deluxe.webp" alt="Deluxe Suite La Terrazza - Letto King Size, vasca freestanding e travi in castagno" loading="lazy" decoding="async">
+                    <!-- ORBIS-IMG --><img src="img/suite-deluxe.webp" alt="Deluxe Suite La Terrazza - Letto King Size, vasca freestanding e travi in castagno" loading="lazy" decoding="async"><!-- /ORBIS-IMG -->
                     <span class="suite-tag-pill accent">La Più Amata dalle Coppie</span>
                 </div>
                 <div class="suite-details">
                     <div class="suite-meta-header">
-                        <span class="suite-size">45 mq &bull; Fino a 2 Ospiti</span>
+                        <!-- ORBIS-SUBTITLE --><span class="suite-size">45 mq &bull; Fino a 2 Ospiti</span><!-- /ORBIS-SUBTITLE -->
                         <div class="suite-price-comparison">
                             <span class="ota-price">OTA: € 265</span>
                             <span class="direct-price">da <strong>€ 220</strong> / notte</span>
                             <span class="direct-savings-badge">Risparmi € 45</span>
                         </div>
                     </div>
-                    <h3 class="suite-title">Deluxe Suite &ldquo;La Terrazza&rdquo;</h3>
-                    <p class="suite-desc">Situata al primo piano del casale padronale con terrazzo panoramico solarium ad uso esclusivo. Dotata di un maestoso letto King Size a baldacchino e vasca da bagno freestanding in camera vista colline.</p>
+                    <!-- ORBIS-TITLE --><h3 class="suite-title">Deluxe Suite &ldquo;La Terrazza&rdquo;</h3><!-- /ORBIS-TITLE -->
+                    <!-- ORBIS-DESC --><p class="suite-desc">Situata al primo piano del casale padronale con terrazzo panoramico solarium ad uso esclusivo. Dotata di un maestoso letto King Size a baldacchino e vasca da bagno freestanding in camera vista colline.</p><!-- /ORBIS-DESC -->
                     
                     <ul class="suite-amenities-list">
                         <li><span>🌄</span> Terrazza panoramica di 18 mq</li>
@@ -323,29 +336,31 @@
                     </ul>
 
                     <div class="suite-actions">
-                        <button type="button" class="btn-open-drawer" data-suite="suite-deluxe">Scheda Completa &amp; Servizi</button>
-                        <button type="button" class="btn-select-suite btn-primary-gold" data-suite="suite-deluxe">Prenota a € 220</button>
+                        <button type="button" class="btn-open-drawer" data-suite="suite-deluxe" data-orbis-track="suite-deluxe-dettagli" data-orbis-label="Scheda: Suite La Terrazza">Scheda Completa &amp; Servizi</button>
+                        <button type="button" class="btn-select-suite btn-primary-gold" data-suite="suite-deluxe" data-orbis-track="suite-deluxe-prenota" data-orbis-label="Prenota: Suite La Terrazza">Prenota a € 220</button>
                     </div>
                 </div>
             </article>
+            <!-- /ORBIS-SECTION: suite-deluxe -->
 
             <!-- SUITE 3: MASTER SUITE LA TORRE -->
+            <!-- ORBIS-SECTION: suite-torre | Suite 3 - Master Suite La Torre -->
             <article class="suite-card" data-id="suite-torre" data-name="Master Suite La Torre" data-price-direct="310" data-price-ota="375" data-guests="4" data-sqm="60">
                 <div class="suite-media">
-                    <img src="img/suite-torre.webp" alt="Master Suite La Torre - Due livelli, camino in pietra storico e vasca idromassaggio privata" loading="lazy" decoding="async">
+                    <!-- ORBIS-IMG --><img src="img/suite-torre.webp" alt="Master Suite La Torre - Due livelli, camino in pietra storico e vasca idromassaggio privata" loading="lazy" decoding="async"><!-- /ORBIS-IMG -->
                     <span class="suite-tag-pill">Suite Storica &bull; Due Livelli</span>
                 </div>
                 <div class="suite-details">
                     <div class="suite-meta-header">
-                        <span class="suite-size">60 mq &bull; Fino a 4 Ospiti</span>
+                        <!-- ORBIS-SUBTITLE --><span class="suite-size">60 mq &bull; Fino a 4 Ospiti</span><!-- /ORBIS-SUBTITLE -->
                         <div class="suite-price-comparison">
                             <span class="ota-price">OTA: € 375</span>
                             <span class="direct-price">da <strong>€ 310</strong> / notte</span>
                             <span class="direct-savings-badge">Risparmi € 65</span>
                         </div>
                     </div>
-                    <h3 class="suite-title">Master Suite &ldquo;La Torre&rdquo;</h3>
-                    <p class="suite-desc">Il fiore all'occhiello di Villa Bellaria. Si sviluppa sui due piani dell'antica torre di guardia del 1500. Al piano inferiore salotto privato con camino in pietra funzionante; al piano superiore stanza padronale e mini-piscina idromassaggio privata.</p>
+                    <!-- ORBIS-TITLE --><h3 class="suite-title">Master Suite &ldquo;La Torre&rdquo;</h3><!-- /ORBIS-TITLE -->
+                    <!-- ORBIS-DESC --><p class="suite-desc">Il fiore all'occhiello di Villa Bellaria. Si sviluppa sui due piani dell'antica torre di guardia del 1500. Al piano inferiore salotto privato con camino in pietra funzionante; al piano superiore stanza padronale e mini-piscina idromassaggio privata.</p><!-- /ORBIS-DESC -->
                     
                     <ul class="suite-amenities-list">
                         <li><span>🔥</span> Camino storico a legna</li>
@@ -356,11 +371,12 @@
                     </ul>
 
                     <div class="suite-actions">
-                        <button type="button" class="btn-open-drawer" data-suite="suite-torre">Scheda Completa &amp; Servizi</button>
-                        <button type="button" class="btn-select-suite btn-primary-gold" data-suite="suite-torre">Prenota a € 310</button>
+                        <button type="button" class="btn-open-drawer" data-suite="suite-torre" data-orbis-track="suite-torre-dettagli" data-orbis-label="Scheda: Suite La Torre">Scheda Completa &amp; Servizi</button>
+                        <button type="button" class="btn-select-suite btn-primary-gold" data-suite="suite-torre" data-orbis-track="suite-torre-prenota" data-orbis-label="Prenota: Suite La Torre">Prenota a € 310</button>
                     </div>
                 </div>
             </article>
+            <!-- /ORBIS-SECTION: suite-torre -->
 
         </div>
     </section>
@@ -368,12 +384,13 @@
     <!-- ======================================================================
          7. SEZIONE "ESPERIENZE" (Cross-Selling ad Alto Margine)
          ====================================================================== -->
+    <!-- ORBIS-SECTION: esperienze | Esperienze & Degustazioni -->
     <section class="section-experiences" id="esperienze">
         <div class="experiences-container">
             <div class="experiences-header">
-                <span class="section-kicker">Oltre il Soggiorno</span>
-                <h2 class="section-heading">Esperienze Esclusive della Tenuta</h2>
-                <p>Arricchisci la tua fuga toscana selezionando le nostre attività private direttamente nel preventivo.</p>
+                <!-- ORBIS-SUBTITLE --><span class="section-kicker">Oltre il Soggiorno</span><!-- /ORBIS-SUBTITLE -->
+                <!-- ORBIS-TITLE --><h2 class="section-heading">Esperienze Esclusive della Tenuta</h2><!-- /ORBIS-TITLE -->
+                <!-- ORBIS-DESC --><p>Arricchisci la tua fuga toscana selezionando le nostre attività private direttamente nel preventivo.</p><!-- /ORBIS-DESC -->
             </div>
 
             <div class="experiences-grid">
@@ -381,7 +398,7 @@
                 <!-- Esperienza 1 -->
                 <div class="experience-card">
                     <div class="experience-img-box">
-                        <img src="img/degustazione-vini.webp" alt="Degustazione di vini toscani e tagliere tipico nel vigneto al tramonto" loading="lazy" decoding="async">
+                        <!-- ORBIS-IMG --><img src="img/degustazione-vini.webp" alt="Degustazione di vini toscani e tagliere tipico nel vigneto al tramonto" loading="lazy" decoding="async"><!-- /ORBIS-IMG -->
                         <span class="experience-price-badge">€ 45 / persona</span>
                     </div>
                     <div class="experience-info">
@@ -420,19 +437,21 @@
             </div>
         </div>
     </section>
+    <!-- /ORBIS-SECTION: esperienze -->
 
     <!-- ======================================================================
          8. SEZIONE "COLAZIONE & ORTO" (L'Eccellenza Gastronomica)
          ====================================================================== -->
+    <!-- ORBIS-SECTION: colazione | Colazione & Orto -->
     <section class="section-breakfast" id="colazione">
         <div class="breakfast-container">
             <div class="breakfast-media">
-                <img src="img/colazione-relais.webp" alt="Tavola all'aperto allestita per la colazione toscana con crostate e cappuccino" loading="lazy" decoding="async">
+                <!-- ORBIS-IMG --><img src="img/colazione-relais.webp" alt="Tavola all'aperto allestita per la colazione toscana con crostate e cappuccino" loading="lazy" decoding="async"><!-- /ORBIS-IMG -->
             </div>
             <div class="breakfast-content">
-                <span class="section-kicker">Il Rituale del Mattino</span>
-                <h2 class="section-heading">Il sapore delle cose buone, fatte con lentezza.</h2>
-                <p>Crediamo che una giornata speciale debba iniziare senza sveglie e senza orari rigidi. La nostra colazione viene servita ogni mattina dalle 08:00 alle 11:30 sotto il pergolato di glicine o comodamente nella privacy della vostra suite.</p>
+                <!-- ORBIS-SUBTITLE --><span class="section-kicker">Il Rituale del Mattino</span><!-- /ORBIS-SUBTITLE -->
+                <!-- ORBIS-TITLE --><h2 class="section-heading">Il sapore delle cose buone, fatte con lentezza.</h2><!-- /ORBIS-TITLE -->
+                <!-- ORBIS-DESC --><p>Crediamo che una giornata speciale debba iniziare senza sveglie e senza orari rigidi. La nostra colazione viene servita ogni mattina dalle 08:00 alle 11:30 sotto il pergolato di glicine o comodamente nella privacy della vostra suite.</p><!-- /ORBIS-DESC -->
                 
                 <div class="breakfast-pillars">
                     <div class="pillar-row">
@@ -460,19 +479,21 @@
             </div>
         </div>
     </section>
+    <!-- /ORBIS-SECTION: colazione -->
 
     <!-- ======================================================================
          9. SOCIAL PROOF & RECENSIONI OSPITI
          ====================================================================== -->
+    <!-- ORBIS-SECTION: recensioni | Recensioni Ospiti -->
     <section class="section-reviews" aria-label="Valutazioni degli ospiti">
         <div class="reviews-container">
             <div class="reviews-header">
                 <div class="rating-badge">
                     <span class="stars">★★★★★</span>
                     <strong class="rating-num">4.96 / 5</strong>
-                    <span class="rating-count">(184 recensioni verificate)</span>
+                    <!-- ORBIS-SUBTITLE --><span class="rating-count">(184 recensioni verificate)</span><!-- /ORBIS-SUBTITLE -->
                 </div>
-                <h2 class="section-heading">L'esperienza di chi ha vissuto Villa Bellaria</h2>
+                <!-- ORBIS-TITLE --><h2 class="section-heading">L'esperienza di chi ha vissuto Villa Bellaria</h2><!-- /ORBIS-TITLE -->
             </div>
 
             <div class="reviews-grid">
@@ -507,16 +528,18 @@
             </div>
         </div>
     </section>
+    <!-- /ORBIS-SECTION: recensioni -->
 
     <!-- ======================================================================
          10. LOGISTICA, TERRITORIO & DISTANZE
          ====================================================================== -->
+    <!-- ORBIS-SECTION: territorio | Posizione & Dintorni -->
     <section class="section-location" id="territorio">
         <div class="location-container">
             <div class="location-header">
-                <span class="section-kicker">La Posizione Geografica</span>
-                <h2 class="section-heading">Nel Cuore della Bellezza Toscana</h2>
-                <p>Villa Bellaria si trova in posizione baricentrica per esplorare agevolmente tutti i tesori della Val d'Orcia senza lunghi trasferimenti.</p>
+                <!-- ORBIS-SUBTITLE --><span class="section-kicker">La Posizione Geografica</span><!-- /ORBIS-SUBTITLE -->
+                <!-- ORBIS-TITLE --><h2 class="section-heading">Nel Cuore della Bellezza Toscana</h2><!-- /ORBIS-TITLE -->
+                <!-- ORBIS-DESC --><p>Villa Bellaria si trova in posizione baricentrica per esplorare agevolmente tutti i tesori della Val d'Orcia senza lunghi trasferimenti.</p><!-- /ORBIS-DESC -->
             </div>
 
             <div class="distances-grid">
@@ -565,15 +588,17 @@
             </div>
         </div>
     </section>
+    <!-- /ORBIS-SECTION: territorio -->
 
     <!-- ======================================================================
          11. ACCORDION F.A.Q. OPERATIVE
          ====================================================================== -->
+    <!-- ORBIS-SECTION: faq | Domande Frequenti (F.A.Q.) -->
     <section class="section-faq" id="faq">
         <div class="faq-container">
             <div class="faq-header">
-                <span class="section-kicker">Informazioni Pratiche</span>
-                <h2 class="section-heading">Domande Frequenti sul Soggiorno</h2>
+                <!-- ORBIS-SUBTITLE --><span class="section-kicker">Informazioni Pratiche</span><!-- /ORBIS-SUBTITLE -->
+                <!-- ORBIS-TITLE --><h2 class="section-heading">Domande Frequenti sul Soggiorno</h2><!-- /ORBIS-TITLE -->
             </div>
 
             <div class="faq-accordion-group">
@@ -621,15 +646,17 @@
             </div>
         </div>
     </section>
+    <!-- /ORBIS-SECTION: faq -->
 
     <!-- ======================================================================
          12. FOOTER UFFICIALE
          ====================================================================== -->
+    <!-- ORBIS-SECTION: contatti-footer | Footer & Contatti Concierge -->
     <footer class="footer-main">
         <div class="footer-container">
             <div class="footer-col brand-col">
-                <span class="footer-logo">VILLA BELLARIA</span>
-                <p class="footer-desc">Country Relais &amp; Historical Retreat nel cuore della Val d'Orcia. Un'esperienza di ospitalità autentica, discreta e rispettosa dei ritmi della natura toscana.</p>
+                <!-- ORBIS-TITLE --><span class="footer-logo">VILLA BELLARIA</span><!-- /ORBIS-TITLE -->
+                <!-- ORBIS-DESC --><p class="footer-desc">Country Relais &amp; Historical Retreat nel cuore della Val d'Orcia. Un'esperienza di ospitalità autentica, discreta e rispettosa dei ritmi della natura toscana.</p><!-- /ORBIS-DESC -->
                 <div class="footer-certifications">
                     <span>Certificazione Biologica ICEA &bull; Dimore Storiche Italiane</span>
                 </div>
@@ -674,6 +701,7 @@
             </div>
         </div>
     </footer>
+    <!-- /ORBIS-SECTION: contatti-footer -->
 
     <!-- ======================================================================
          13. MODALE PREVENTIVO INTERATTIVO (Il Cuore della Conversione)
@@ -782,7 +810,7 @@
 
             <!-- Azioni di Conversione (WhatsApp vs Email) -->
             <div class="modal-actions-wrapper">
-                <a href="#" id="whatsappBookingBtn" target="_blank" rel="noopener noreferrer" class="btn-whatsapp-action">
+                <a href="#" id="whatsappBookingBtn" target="_blank" rel="noopener noreferrer" class="btn-whatsapp-action" data-orbis-track="conversion-whatsapp-preventivo" data-orbis-label="Conversione: WhatsApp Preventivo">
                     <span class="wa-icon">💬</span>
                     <div class="btn-wa-text">
                         <strong>Invia Richiesta su WhatsApp</strong>
@@ -801,7 +829,7 @@
                         <input type="tel" id="guestPhoneInput" placeholder="Recapito Telefonico (es. +39 340 ...)">
                         <input type="text" id="guestNotesInput" placeholder="Note speciali o orario presunto di arrivo">
                     </div>
-                    <button type="submit" id="submitEmailInquiryBtn" class="btn-secondary-dark">Invia Richiesta Formale via Email</button>
+                    <button type="submit" id="submitEmailInquiryBtn" class="btn-secondary-dark" data-orbis-track="conversion-email-preventivo" data-orbis-label="Conversione: Email Preventivo">Invia Richiesta Formale via Email</button>
                 </form>
                 
                 <div id="inquirySuccessMsg" class="success-message hidden">
@@ -829,7 +857,7 @@
                 <span class="drawer-label">Tariffa Diretta da:</span>
                 <strong class="drawer-price" id="drawerSuitePrice">€ 0.00</strong>
             </div>
-            <button type="button" class="btn-primary-gold btn-book-from-drawer" id="drawerBookSuiteBtn">Seleziona per il Preventivo</button>
+            <button type="button" class="btn-primary-gold btn-book-from-drawer" id="drawerBookSuiteBtn" data-orbis-track="drawer-seleziona-suite" data-orbis-label="Scheda Suite: Seleziona Preventivo">Seleziona per il Preventivo</button>
         </div>
     </aside>
 
