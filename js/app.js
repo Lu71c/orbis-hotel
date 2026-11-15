@@ -1,9 +1,107 @@
 /* ==========================================================================
    VILLA BELLARIA | COUNTRY RELAIS & RETREAT - MOTORE DI PRENOTAZIONE (js/app.js)
-   Architettura: Vanilla JS, Moduli Indipendenti, Calcolo Notti e WhatsApp Deep-Link
+   Architettura: Vanilla JS, Moduli Indipendenti, Calcolo Notti, WhatsApp & Orbis Telemetry
    ========================================================================== */
 
 document.addEventListener('DOMContentLoaded', () => {
+
+    /* ==========================================================================
+       0. ORBIS PRIVACY-FIRST ANALYTICS ENGINE (Zero Cookie • Zero IP • GDPR-Free)
+       ========================================================================== */
+    const ORBIS_ANALYTICS = (() => {
+        const ENDPOINT = 'https://smith-anchor-untoasted.ngrok-free.dev/api/v1/analytics/hit';
+        const SITE_ID = document.body.getAttribute('data-orbis-site') || 'villa-bellaria';
+        const DWELL_MS = 2000; // Soglia minima di permanenza visiva (2 secondi)
+        const trackedSessionKeys = new Set();
+
+        function sendPulse(eventType, targetId, label = '') {
+            if (!SITE_ID || !targetId) return;
+            const params = new URLSearchParams({
+                site_id: SITE_ID,
+                event_type: eventType,
+                target_id: targetId
+            });
+            if (label) params.set('label', label);
+
+            const url = `${ENDPOINT}?${params.toString()}`;
+            try {
+                fetch(url, {
+                    method: 'POST',
+                    keepalive: true,
+                    headers: { 'ngrok-skip-browser-warning': 'true' }
+                }).catch(() => {});
+            } catch (_) {
+                if (navigator.sendBeacon) navigator.sendBeacon(url);
+            }
+        }
+
+        function trackPageView(pageName) {
+            const cleanPage = (pageName || window.location.pathname.split('/').pop() || 'index.html').trim();
+            const dedupKey = `orbis_pv_${SITE_ID}_${cleanPage}`;
+            if (sessionStorage.getItem(dedupKey)) return;
+            sessionStorage.setItem(dedupKey, '1');
+            sendPulse('page_view', cleanPage);
+        }
+
+        function observeScrollSections() {
+            const sections = document.querySelectorAll('section[id], [data-orbis-section]');
+            if (!sections.length || !('IntersectionObserver' in window)) return;
+
+            const activeTimers = new Map();
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    const secId = entry.target.getAttribute('data-orbis-section') || entry.target.id;
+                    if (!secId) return;
+
+                    if (entry.isIntersecting) {
+                        if (trackedSessionKeys.has(`sec_${secId}`) || activeTimers.has(secId)) return;
+                        const timerId = setTimeout(() => {
+                            trackedSessionKeys.add(`sec_${secId}`);
+                            activeTimers.delete(secId);
+                            sendPulse('section_view', secId);
+                        }, DWELL_MS);
+                        activeTimers.set(secId, timerId);
+                    } else if (activeTimers.has(secId)) {
+                        clearTimeout(activeTimers.get(secId));
+                        activeTimers.delete(secId);
+                    }
+                });
+            }, { threshold: 0.35 });
+
+            sections.forEach(sec => observer.observe(sec));
+        }
+
+        function bindClickTracking() {
+            document.addEventListener('click', (e) => {
+                // 1. Viste virtuali / tab multi-pagina simulati
+                const virtualPageEl = e.target.closest('[data-orbis-page]');
+                if (virtualPageEl) {
+                    trackPageView(virtualPageEl.getAttribute('data-orbis-page'));
+                }
+
+                // 2. Pulsanti e CTA tracciati
+                const trackEl = e.target.closest('[data-orbis-track]');
+                if (trackEl) {
+                    const trackId = trackEl.getAttribute('data-orbis-track');
+                    const trackLabel = trackEl.getAttribute('data-orbis-label') || trackEl.textContent.trim().slice(0, 60);
+                    sendPulse('track_click', trackId, trackLabel);
+                }
+            });
+        }
+
+        return {
+            init() {
+                trackPageView();
+                observeScrollSections();
+                bindClickTracking();
+            },
+            trackCustom(trackId, label) {
+                sendPulse('track_click', trackId, label);
+            }
+        };
+    })();
+
+    ORBIS_ANALYTICS.init();
 
     /* ==========================================================================
        1. PRECARICAMENTO IMMAGINI IN RAM (Zero-Lag Experience)
@@ -34,7 +132,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const mobileNavDrawer = document.getElementById('mobileNavDrawer');
     const drawerLinks = document.querySelectorAll('.drawer-link');
 
-    // Header Sticky Effect
     window.addEventListener('scroll', () => {
         if (window.scrollY > 50) {
             header.classList.add('scrolled');
@@ -43,7 +140,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }, { passive: true });
 
-    // Drawer Navigazione Mobile
     function toggleMenu(show) {
         if (show) {
             mobileNavDrawer.classList.add('open');
@@ -64,14 +160,14 @@ document.addEventListener('DOMContentLoaded', () => {
        3. DATABASE TARIFFE & PARAMETRI DELLA STRUTTURA
        ========================================================================== */
     const CONFIG = {
-        phone: '393409876543', // Numero WhatsApp struttura (senza + o spazi)
-        touristTaxPerGuestPerNight: 2.50, // Tassa di soggiorno (Comune di Pienza fittizio)
-        discountPercentage: 15, // 15% di sconto diretto applicato
+        phone: '393409876543',
+        touristTaxPerGuestPerNight: 2.50,
+        discountPercentage: 15,
         suites: {
             'suite-giardino': { name: 'Junior Suite "Il Giardino"', basePrice: 160, otaPrice: 190 },
             'suite-deluxe': { name: 'Deluxe Suite "La Terrazza"', basePrice: 220, otaPrice: 265 },
             'suite-torre': { name: 'Master Suite "La Torre"', basePrice: 310, otaPrice: 375 },
-            'any': { name: 'Miglior Suite Disponibile', basePrice: 160, otaPrice: 190 } // Default base
+            'any': { name: 'Miglior Suite Disponibile', basePrice: 160, otaPrice: 190 }
         }
     };
 
@@ -82,7 +178,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const checkOutInput = document.getElementById('checkOutInput');
     const noticeBox = document.getElementById('bookingMinNightsNotice');
 
-    // Funzione Utility: Ottiene la data di oggi formattata (YYYY-MM-DD)
     function getTodayString() {
         const today = new Date();
         const year = today.getFullYear();
@@ -91,7 +186,6 @@ document.addEventListener('DOMContentLoaded', () => {
         return `${year}-${month}-${day}`;
     }
 
-    // Funzione Utility: Aggiunge X giorni a una data
     function addDays(dateString, days) {
         const date = new Date(dateString);
         date.setDate(date.getDate() + days);
@@ -101,25 +195,21 @@ document.addEventListener('DOMContentLoaded', () => {
         return `${year}-${month}-${day}`;
     }
 
-    // Inizializzazione Calendari
     if (checkInInput && checkOutInput) {
         const today = getTodayString();
         const tomorrow = addDays(today, 1);
-        
+
         checkInInput.setAttribute('min', today);
         checkInInput.value = today;
-        
+
         checkOutInput.setAttribute('min', tomorrow);
         checkOutInput.value = tomorrow;
 
-        // Logica Vincoli al cambio Check-in
         checkInInput.addEventListener('change', (e) => {
             const selectedCheckIn = e.target.value;
             const newMinCheckOut = addDays(selectedCheckIn, 1);
-            
             checkOutInput.setAttribute('min', newMinCheckOut);
-            
-            // Se il check-out precedente è diventato non valido, lo resetta
+
             if (new Date(checkOutInput.value) <= new Date(selectedCheckIn)) {
                 checkOutInput.value = newMinCheckOut;
             }
@@ -129,17 +219,14 @@ document.addEventListener('DOMContentLoaded', () => {
         checkOutInput.addEventListener('change', validateNightsRule);
     }
 
-    // Regola Commerciale: Avviso 2 notti se il check-in è Venerdì (5) o Sabato (6)
     function validateNightsRule() {
         if (!checkInInput.value || !checkOutInput.value || !noticeBox) return;
-
         const dIn = new Date(checkInInput.value);
         const dOut = new Date(checkOutInput.value);
-        
-        // Calcolo notti matematiche
+
         const timeDiff = dOut.getTime() - dIn.getTime();
         const nights = Math.ceil(timeDiff / (1000 * 3600 * 24));
-        const dayOfWeek = dIn.getDay(); // 0 = Domenica, 5 = Venerdì, 6 = Sabato
+        const dayOfWeek = dIn.getDay();
 
         if ((dayOfWeek === 5 || dayOfWeek === 6) && nights === 1) {
             noticeBox.classList.remove('hidden');
@@ -154,30 +241,27 @@ document.addEventListener('DOMContentLoaded', () => {
     const bookingForm = document.getElementById('bookingBarForm');
     const quoteModal = document.getElementById('quoteModal');
     const closeQuoteBtn = document.getElementById('closeQuoteModalBtn');
-    
-    // Checkbox Extra Upsell
+
     const extraWine = document.getElementById('extraWineCheck');
     const extraPicnic = document.getElementById('extraPicnicCheck');
     const extraBike = document.getElementById('extraBikeCheck');
     const allExtras = document.querySelectorAll('.extra-input');
 
-    // Nodi DOM del Preventivo
     const uiDates = document.getElementById('modalStayDates');
     const uiNights = document.getElementById('modalStayNights');
     const uiGuests = document.getElementById('modalStayGuests');
     const uiSuiteName = document.getElementById('modalStaySuiteName');
-    
+
     const uiPriceOta = document.getElementById('modalPriceOta');
     const uiDiscount = document.getElementById('modalDiscountValue');
     const uiCalcDays = document.getElementById('modalCalcDays');
     const uiSubtotal = document.getElementById('modalStaySubtotal');
-    
+
     const uiExtrasRow = document.getElementById('modalExtrasRow');
     const uiExtrasTotal = document.getElementById('modalExtrasTotal');
     const uiTouristTax = document.getElementById('modalTouristTax');
     const uiFinalPrice = document.getElementById('modalFinalPrice');
 
-    // Variabili di Stato Globali per la Prenotazione Corrente
     let currentQuote = {
         checkIn: '',
         checkOut: '',
@@ -192,7 +276,6 @@ document.addEventListener('DOMContentLoaded', () => {
         finalTotal: 0
     };
 
-    // Apertura/Chiusura Modale
     function toggleQuoteModal(show) {
         if (show) {
             quoteModal.classList.add('open');
@@ -209,22 +292,19 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (closeQuoteBtn) closeQuoteBtn.addEventListener('click', () => toggleQuoteModal(false));
 
-    // Formatter Date (da YYYY-MM-DD a DD/MM/YYYY)
     function formatDateITA(dateString) {
         if (!dateString) return '';
         const parts = dateString.split('-');
         return `${parts[2]}/${parts[1]}/${parts[0]}`;
     }
 
-    // Formatter Valuta Euro
     function formatEUR(amount) {
         return `€ ${amount.toFixed(2).replace('.', ',')}`;
     }
 
-    // Motore Principale di Calcolo Preventivo
     function calculateAndRenderQuote() {
         let extrasSum = 0;
-        
+
         if (extraWine && extraWine.checked) {
             extrasSum += parseFloat(extraWine.getAttribute('data-price-per-guest')) * currentQuote.guests;
         }
@@ -237,15 +317,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
         currentQuote.extrasTotal = extrasSum;
 
-        // Calcoli Finanziari
         const totalOta = currentQuote.otaRate * currentQuote.nights;
         const totalBase = currentQuote.baseRate * currentQuote.nights;
         const discountAmount = totalOta - totalBase;
-        
+
         currentQuote.touristTaxTotal = currentQuote.guests * currentQuote.nights * CONFIG.touristTaxPerGuestPerNight;
         currentQuote.finalTotal = totalBase + currentQuote.extrasTotal + currentQuote.touristTaxTotal;
 
-        // Renderizzazione nella UI
         uiDates.textContent = `${formatDateITA(currentQuote.checkIn)} → ${formatDateITA(currentQuote.checkOut)}`;
         uiNights.textContent = `${currentQuote.nights} Nott${currentQuote.nights > 1 ? 'i' : 'e'}`;
         uiGuests.textContent = `${currentQuote.guests} Ospit${currentQuote.guests > 1 ? 'i' : 'e'}`;
@@ -255,9 +333,8 @@ document.addEventListener('DOMContentLoaded', () => {
         uiDiscount.textContent = `- ${formatEUR(discountAmount)}`;
         uiCalcDays.textContent = currentQuote.nights;
         uiSubtotal.textContent = formatEUR(totalBase);
-        
         uiTouristTax.textContent = formatEUR(currentQuote.touristTaxTotal);
-        
+
         if (currentQuote.extrasTotal > 0) {
             uiExtrasRow.style.display = 'flex';
             uiExtrasTotal.textContent = `+ ${formatEUR(currentQuote.extrasTotal)}`;
@@ -266,26 +343,21 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         uiFinalPrice.textContent = formatEUR(currentQuote.finalTotal);
-        
-        // Aggiorna il Link WhatsApp
         updateWhatsAppLink();
     }
 
-    // Intercetta Submit della Booking Bar Esterna
     if (bookingForm) {
         bookingForm.addEventListener('submit', (e) => {
             e.preventDefault();
-            
+
             const checkIn = checkInInput.value;
             const checkOut = checkOutInput.value;
-            
-            if(!checkIn || !checkOut) return;
+            if (!checkIn || !checkOut) return;
 
             const dIn = new Date(checkIn);
             const dOut = new Date(checkOut);
             const nights = Math.max(1, Math.ceil((dOut.getTime() - dIn.getTime()) / (1000 * 3600 * 24)));
-
-            const guests = parseInt(document.getElementById('guestsSelect').value);
+            const guests = parseInt(document.getElementById('guestsSelect').value, 10);
             const suiteId = document.getElementById('suiteSelect').value;
             const suiteData = CONFIG.suites[suiteId];
 
@@ -303,7 +375,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Listener Live sui Checkbox degli Extra
     allExtras.forEach(checkbox => {
         checkbox.addEventListener('change', calculateAndRenderQuote);
     });
@@ -315,14 +386,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function updateWhatsAppLink() {
         if (!waBtn) return;
-        
+
         let message = `🌿 *Richiesta Prenotazione VILLA BELLARIA*\n\n`;
         message += `Salve, desidero verificare la disponibilità per:\n`;
         message += `🛏️ Alloggio: *${currentQuote.suiteName}*\n`;
         message += `📅 Check-in: *${formatDateITA(currentQuote.checkIn)}*\n`;
         message += `🛫 Check-out: *${formatDateITA(currentQuote.checkOut)}* (${currentQuote.nights} notti)\n`;
         message += `👥 Ospiti: *${currentQuote.guests}*\n\n`;
-        
+
         if (currentQuote.extrasTotal > 0) {
             message += `✨ Extra aggiunti al pacchetto:\n`;
             if (extraWine.checked) message += `- Degustazione Vini & Frantoio\n`;
@@ -339,7 +410,6 @@ document.addEventListener('DOMContentLoaded', () => {
         waBtn.href = `https://wa.me/${CONFIG.phone}?text=${encodedMessage}`;
     }
 
-    // Simulazione Invio Form Email Alternativo
     const emailForm = document.getElementById('directInquiryForm');
     const successMsg = document.getElementById('inquirySuccessMsg');
 
@@ -347,7 +417,7 @@ document.addEventListener('DOMContentLoaded', () => {
         emailForm.addEventListener('submit', (e) => {
             e.preventDefault();
             const submitBtn = document.getElementById('submitEmailInquiryBtn');
-            
+
             submitBtn.textContent = 'Invio in corso... ⏳';
             submitBtn.disabled = true;
 
@@ -362,16 +432,16 @@ document.addEventListener('DOMContentLoaded', () => {
        7. GESTIONE PULSANTI "PRENOTA QUESTA SUITE" DALLE CARD
        ========================================================================== */
     const directBookBtns = document.querySelectorAll('.btn-select-suite');
-    
+
     directBookBtns.forEach(btn => {
         btn.addEventListener('click', (e) => {
             const suiteId = e.currentTarget.getAttribute('data-suite');
             const selectElement = document.getElementById('suiteSelect');
-            
+
             if (selectElement) {
                 selectElement.value = suiteId;
             }
-            
+
             const calcBtn = document.getElementById('calcBookingBtn');
             if (calcBtn) {
                 window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -386,7 +456,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const suiteDrawer = document.getElementById('suiteDrawer');
     const suiteDrawerBackdrop = document.getElementById('suiteDrawerBackdrop');
     const closeSuiteDrawerBtn = document.getElementById('closeSuiteDrawerBtn');
-    
+
     const drawerSpecs = document.getElementById('drawerSuiteSpecs');
     const drawerTitle = document.getElementById('drawerSuiteTitle');
     const drawerBody = document.getElementById('drawerSuiteBody');
@@ -401,10 +471,8 @@ document.addEventListener('DOMContentLoaded', () => {
             htmlContent: `
                 <h4>Architettura & Design</h4>
                 <p>Ospitata nell'antica rimessa padronale, questa suite è un rifugio di quiete caratterizzato da tonalità salvia e corda. Il pavimento originale in cotto toscano incontra arredi minimalisti in legno massello lavorato a mano.</p>
-                
                 <h4>Il Patio Privato</h4>
                 <p>L'ingresso indipendente avviene tramite porte-finestre che inondano la stanza di luce naturale e conducono direttamente al patio riservato, arredato con sedute in ferro battuto sotto l'ombra degli ulivi centenari.</p>
-                
                 <h4>Dotazioni Superiori</h4>
                 <ul class="drawer-amenities-full">
                     <li>🛏️ Letto Queen Size Simmons (160x200cm) con topper in memory</li>
@@ -423,10 +491,8 @@ document.addEventListener('DOMContentLoaded', () => {
             htmlContent: `
                 <h4>Architettura & Design</h4>
                 <p>Il cuore nobile del casale. Soffitti vertiginosi con enormi travi di castagno d'epoca e finestre bifore affacciate sulle colline. L'elemento focale è la maestosa vasca da bagno freestanding in resina opaca, posta scenograficamente all'interno della camera.</p>
-                
                 <h4>La Terrazza Solarium</h4>
                 <p>Un balcone panoramico di 18 metri quadrati a uso esclusivo, esposto a sud-ovest per godere dei leggendari tramonti della Val d'Orcia in totale intimità.</p>
-                
                 <h4>Dotazioni Superiori</h4>
                 <ul class="drawer-amenities-full">
                     <li>🛏️ Letto King Size a Baldacchino (180x200cm)</li>
@@ -444,72 +510,74 @@ document.addEventListener('DOMContentLoaded', () => {
             price: '310.00',
             htmlContent: `
                 <h4>Architettura & Design</h4>
-                <p>La vetta esclusiva di Villa Bellaria. Questa suite duplex si sviluppa nell'antica torre di avvistamento del 1500. Al piano inferiore offre una zona living elegante dominata da un imponente camino in pietra serena perfettamente funzionante (legna fornita quotidianamente in inverno).</p>
-                
+                <p>Il fiore all'occhiello di Villa Bellaria, ricavata nell'antica torre di avvistamento cinquecentesca su due livelli collegati da una scala interna in pietra serena. Al piano inferiore un salotto intimo con camino a legna funzionante; al piano superiore la camera padronale con vista panoramica a 360 gradi sulla Val d'Orcia.</p>
                 <h4>Area Benessere Privata</h4>
-                <p>Salendo la scala in legno e ferro si raggiunge la camera da letto principale, affiancata da un angolo Spa privato con vasca mini-piscina idromassaggio angolare circondata da candele.</p>
-                
+                <p>Mini-piscina idromassaggio Jacuzzi riservata direttamente in suite, ideale per rilassarsi al tramonto ammirando i cipressi e le colline di Pienza.</p>
                 <h4>Dotazioni Superiori</h4>
                 <ul class="drawer-amenities-full">
-                    <li>🔥 Camino storico ad uso esclusivo degli ospiti</li>
-                    <li>🫧 Jacuzzi idromassaggio per due persone</li>
-                    <li>🛏️ Letto King Size + Divano letto matrimoniale premium nel living</li>
-                    <li>🍾 Champagne & Fragole all'arrivo (incluso nella tariffa)</li>
-                    <li>🍽️ Possibilità di Room Service serale privato (su richiesta)</li>
-                    <li>📺 Doppia Smart TV OLED 55" (Living e Camera)</li>
+                    <li>🔥 Camino storico a legna funzionante</li>
+                    <li>🫧 Vasca idromassaggio Jacuzzi privata in suite</li>
+                    <li>🛏️ Letto King Size + divano letto matrimoniale al piano inferiore</li>
+                    <li>🎶 Impianto acustico Marshall Bluetooth</li>
+                    <li>🍷 Cantinetta vini privati &amp; corner Nespresso</li>
+                    <li>🧴 Set cortesia biologico certificato ICEA all'olio EVO</li>
                 </ul>
             `
         }
     };
 
-    function toggleSuiteDrawer(show, suiteId = null) {
-        if (show && suiteId && suiteDetailsDB[suiteId]) {
-            const data = suiteDetailsDB[suiteId];
-            drawerSpecs.textContent = data.specs;
-            drawerTitle.textContent = data.title;
-            drawerBody.innerHTML = data.htmlContent;
-            drawerPrice.textContent = `€ ${data.price}`;
-            drawerBookBtn.setAttribute('data-target-suite', suiteId);
+    const openDrawerBtns = document.querySelectorAll('.btn-open-drawer');
+    let currentDrawerSuiteId = 'suite-giardino';
 
+    function toggleSuiteDrawer(show) {
+        if (!suiteDrawer || !suiteDrawerBackdrop) return;
+        if (show) {
             suiteDrawer.classList.add('open');
             suiteDrawerBackdrop.classList.add('open');
+            suiteDrawer.setAttribute('aria-hidden', 'false');
             suiteDrawerBackdrop.setAttribute('aria-hidden', 'false');
             document.body.classList.add('no-scroll');
         } else {
             suiteDrawer.classList.remove('open');
             suiteDrawerBackdrop.classList.remove('open');
+            suiteDrawer.setAttribute('aria-hidden', 'true');
             suiteDrawerBackdrop.setAttribute('aria-hidden', 'true');
-            if (!quoteModal.classList.contains('open') && !mobileNavDrawer.classList.contains('open')) {
+            if (!mobileNavDrawer.classList.contains('open') && !quoteModal.classList.contains('open')) {
                 document.body.classList.remove('no-scroll');
             }
         }
     }
 
-    // Listener Bottoni Apertura Schede
-    const openDrawerBtns = document.querySelectorAll('.btn-open-drawer');
     openDrawerBtns.forEach(btn => {
         btn.addEventListener('click', (e) => {
-            toggleSuiteDrawer(true, e.currentTarget.getAttribute('data-suite'));
+            const suiteId = e.currentTarget.getAttribute('data-suite');
+            const data = suiteDetailsDB[suiteId];
+            if (!data) return;
+
+            currentDrawerSuiteId = suiteId;
+            if (drawerSpecs) drawerSpecs.textContent = data.specs;
+            if (drawerTitle) drawerTitle.textContent = data.title;
+            if (drawerBody) drawerBody.innerHTML = data.htmlContent;
+            if (drawerPrice) drawerPrice.textContent = `€ ${data.price}`;
+
+            toggleSuiteDrawer(true);
         });
     });
 
-    // Listener Chiusura
     if (closeSuiteDrawerBtn) closeSuiteDrawerBtn.addEventListener('click', () => toggleSuiteDrawer(false));
     if (suiteDrawerBackdrop) suiteDrawerBackdrop.addEventListener('click', () => toggleSuiteDrawer(false));
 
-    // Listener Pulsante di Conversione Interno al Cassetto
     if (drawerBookBtn) {
-        drawerBookBtn.addEventListener('click', (e) => {
-            const suiteId = e.currentTarget.getAttribute('data-target-suite');
+        drawerBookBtn.addEventListener('click', () => {
             toggleSuiteDrawer(false);
-            
             const selectElement = document.getElementById('suiteSelect');
-            if (selectElement) selectElement.value = suiteId;
-            
+            if (selectElement) {
+                selectElement.value = currentDrawerSuiteId;
+            }
             const calcBtn = document.getElementById('calcBookingBtn');
             if (calcBtn) {
                 window.scrollTo({ top: 0, behavior: 'smooth' });
-                setTimeout(() => calcBtn.click(), 600);
+                setTimeout(() => calcBtn.click(), 450);
             }
         });
     }
