@@ -736,7 +736,7 @@ button {
 }
 
 /* ==========================================================================
-   6. SEZIONE "LE SUITE" (Le Camere Private)
+   6. SEZIONE "LE SUITE" (Le Tre Camere Private)
    ========================================================================== */
 .section-suites {
     padding: 100px 5%;
@@ -773,12 +773,6 @@ button {
     transition: box-shadow var(--transition-medium);
 }
 
-@media (min-width: 901px) {
-    .suite-card {
-        height: 520px;
-    }
-}
-
 .suite-card:hover {
     box-shadow: var(--shadow-hover);
 }
@@ -799,7 +793,6 @@ button {
     position: relative;
     overflow: hidden;
     min-height: 420px;
-    background-color: var(--bg-card-soft);
 }
 
 .suite-media img {
@@ -811,23 +804,6 @@ button {
 
 .suite-card:hover .suite-media img {
     transform: scale(1.04);
-}
-
-/* Variante di Immagine Più Piccola Contenuta per Logiche Aggiuntive */
-.img-smaller-contained {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 78% !important;
-    height: 78% !important;
-    transform: translate(-50%, -50%);
-    border-radius: var(--radius-sm);
-    object-fit: cover;
-    box-shadow: var(--shadow-subtle);
-}
-
-.suite-card:hover .suite-media img.img-smaller-contained {
-    transform: translate(-50%, -50%) scale(1.04);
 }
 
 .suite-tag-pill {
@@ -843,7 +819,6 @@ button {
     letter-spacing: 1.2px;
     padding: 6px 14px;
     border-radius: var(--radius-pill);
-    z-index: 2;
 }
 
 .suite-tag-pill.accent {
@@ -855,7 +830,6 @@ button {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    overflow-y: auto;
 }
 
 .suite-meta-header {
@@ -2013,11 +1987,6 @@ button {
     .suite-card,
     .suite-card-reversed {
         grid-template-columns: 1fr;
-        height: auto;
-    }
-
-    .suite-media {
-        min-height: 380px;
     }
 
     .suite-card-reversed .suite-media,
