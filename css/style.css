@@ -2054,8 +2054,8 @@ button {
     }
     
     .floating-wa-btn {
-        bottom: 24px;
-        right: 24px;
+        bottom: 20px;
+        right: 20px;
         width: 52px;
         height: 52px;
     }
@@ -2077,8 +2077,8 @@ button {
 
 .floating-wa-btn {
     position: fixed;
-    bottom: 24px;
-    right: 24px;
+    bottom: 30px;
+    right: 30px;
     width: 64px;
     height: 64px;
     background-color: #25d366;
@@ -2088,7 +2088,7 @@ button {
     align-items: center;
     justify-content: center;
     box-shadow: 0 8px 25px rgba(37, 211, 102, 0.4);
-    z-index: 99999;
+    z-index: 1000;
     transition: transform var(--transition-fast), box-shadow var(--transition-fast), background-color var(--transition-fast);
 }
 
