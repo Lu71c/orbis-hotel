@@ -2052,4 +2052,48 @@ button {
         grid-template-columns: 1fr;
         gap: 40px;
     }
+    
+    .floating-wa-btn {
+        bottom: 20px;
+        right: 20px;
+        width: 52px;
+        height: 52px;
+    }
+    .floating-wa-btn svg {
+        width: 26px;
+        height: 26px;
+    }
+}
+
+/* ==========================================================================
+   16. EXTRA: STORIA AZIENDA E FLOATING WHATSAPP
+   ========================================================================== */
+.company-history-title {
+    font-size: 1.6rem;
+    color: var(--text-main);
+    margin-top: 1.5rem;
+    margin-bottom: 0.8rem;
+}
+
+.floating-wa-btn {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 64px;
+    height: 64px;
+    background-color: #25d366;
+    color: #ffffff;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 8px 25px rgba(37, 211, 102, 0.4);
+    z-index: 1000;
+    transition: transform var(--transition-fast), box-shadow var(--transition-fast), background-color var(--transition-fast);
+}
+
+.floating-wa-btn:hover {
+    transform: translateY(-4px) scale(1.05);
+    background-color: #20ba59;
+    box-shadow: 0 12px 30px rgba(37, 211, 102, 0.5);
 }
