@@ -108,7 +108,6 @@ document.addEventListener('DOMContentLoaded', () => {
        ========================================================================== */
     const preloadImages = [
         'img/hero-relais.webp',
-        'img/upload_20261126_192735.webp',
         'img/suite-giardino.webp',
         'img/suite-deluxe.webp',
         'img/suite-torre.webp',
@@ -165,7 +164,6 @@ document.addEventListener('DOMContentLoaded', () => {
         touristTaxPerGuestPerNight: 2.50,
         discountPercentage: 15,
         suites: {
-            'suite-ulivo': { name: 'Dependance "L\'Ulivo"', basePrice: 140, otaPrice: 165 },
             'suite-giardino': { name: 'Junior Suite "Il Giardino"', basePrice: 160, otaPrice: 190 },
             'suite-deluxe': { name: 'Deluxe Suite "La Terrazza"', basePrice: 220, otaPrice: 265 },
             'suite-torre': { name: 'Master Suite "La Torre"', basePrice: 310, otaPrice: 375 },
@@ -466,26 +464,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const drawerBookBtn = document.getElementById('drawerBookSuiteBtn');
 
     const suiteDetailsDB = {
-        'suite-ulivo': {
-            specs: '30 mq • Fino a 2 Ospiti • Dependance Indipendente',
-            title: 'Dependance "L\'Ulivo"',
-            price: '140.00',
-            htmlContent: `
-                <h4>Architettura & Design</h4>
-                <p>Un rifugio rustico ed elegante, separato dalla villa principale e letteralmente circondato dal nostro uliveto secolare. La pietra a vista originaria dialoga con un design d'interni purista e materiali organici come lino e legno di recupero.</p>
-                <h4>Immersione nella Natura</h4>
-                <p>Gode di un angolo relax esterno ombreggiato direttamente dalle fronde degli ulivi, ideale per la lettura o la colazione in totale solitudine. L'assenza di pareti condivise garantisce un silenzio impareggiabile.</p>
-                <h4>Dotazioni Superiori</h4>
-                <ul class="drawer-amenities-full">
-                    <li>🛏️ Letto Matrimoniale ecologico con lenzuola in lino</li>
-                    <li>🚿 Bagno di design con doccia sensoriale a cromoterapia</li>
-                    <li>🧴 Set cortesia sostenibile e biologico all'olio EVO</li>
-                    <li>☕ Macchina Nespresso e bollitore con infusi artigianali</li>
-                    <li>🧘 Area patio esterna con sdraio in legno</li>
-                    <li>❄️ Climatizzazione indipendente</li>
-                </ul>
-            `
-        },
         'suite-giardino': {
             specs: '35 mq • Fino a 2 Ospiti • Piano Terra',
             title: 'Junior Suite "Il Giardino"',
